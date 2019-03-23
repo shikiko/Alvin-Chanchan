@@ -1,3 +1,11 @@
+<?php
+if(empty($breadcrumb)){
+  $breadcrumb = array($currentPage);
+}else{
+  array_push($breadcrumb, $currentPage);
+}
+  array_push($breadcrumb, 'test');
+?>
       <!-- Top bar-->
       <div class="top-bar">
         <div class="container">
@@ -257,12 +265,15 @@
         <div class="container">
           <div class="row d-flex align-items-center flex-wrap">
             <div class="col-md-7">
-              <h1 class="h2">Category Full</h1>
+              <h1 class="h2"><?php echo $currentPage; ?></h1>
             </div>
             <div class="col-md-5">
               <ul class="breadcrumb d-flex justify-content-end">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item active">Category Full</li>
+                <?php
+                  echo '<li class="breadcrumb-item"><a href="main.php">';
+                  echo $breadcrumb[0];
+                  echo '</a></li>';
+                ?>
               </ul>
             </div>
           </div>
