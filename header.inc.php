@@ -1,6 +1,6 @@
 <?php
    echo '<script>console.log("HeaderPHP")</script>';
-   ?>
+?>
 <!-- Top bar-->
 <div class="top-bar">
    <div class="container">

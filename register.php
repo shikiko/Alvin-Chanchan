@@ -1,8 +1,6 @@
-
-
 <?php 
    $currentPage = 'register';
-   ?>
+?>
 <!DOCTYPE html>
 <html>
    <head>

@@ -1,8 +1,6 @@
-
-
 <?php 
    $currentPage = 'home';
-   ?>
+?>
 <!DOCTYPE html>
 <html>
    <head>
