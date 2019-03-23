@@ -1,7 +1,8 @@
 <?php
-   echo '<script>console.log("HeaderPHP")</script>';
+   echo '<script>console.log("[DEBUG]HeaderPHP")</script>';
 ?>
 <!-- Top bar-->
+<title>Fast Trade</title>
 <div class="top-bar">
    <div class="container">
       <div class="row d-flex align-items-center">

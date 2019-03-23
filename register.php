@@ -1,12 +1,63 @@
 <?php 
    $currentPage = 'register';
+   require_once("config.php");
+
+// If user posts a request.
+// TODO : Validate input!!!
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  echo '<script>console.log("[DEBUG]POSTING")</script>';
+  $name = trim_input($_POST["name"]);
+  echo '<script>console.log("[DEBUG]Name:';
+  echo $name;
+  echo '")</script>';
+
+  $email = trim_input($_POST["email"]);
+  echo '<script>console.log("[DEBUG]Email:';
+  echo $email;
+  echo '")</script>';
+
+  $password = trim_input($_POST["password"]);
+  echo '<script>console.log("[DEBUG]Password:';
+  echo $password;
+  echo '")</script>';
+
+
+
+  // Create connection
+  $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+  // Check connection
+  if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+  }
+
+  $sql = "INSERT INTO User (username, email, password)
+  VALUES ('$email', '$name', '$password')";
+
+  if ($conn->query($sql) === TRUE) {
+      echo '<script>console.log("[DEBUG]New record created successfully")</script>';
+  } else {
+      $error = "Error: " . $sql . "<br>" . $conn->error;
+      echo '<script>console.log("[DEBUG]Password:';
+      echo $error;
+      echo '")</script>';  
+    }
+}
+
+function trim_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
+// Close connection
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html>
    <head>
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <title>Universal - All In 1 Template</title>
       <meta name="description" content="">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="robots" content="all,follow">
@@ -50,20 +101,19 @@
                      <h2 class="text-uppercase">New account</h2>
                      <p class="lead">Not our registered customer yet?</p>
                      <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
-                     <p class="text-muted">If you have any questions, please feel free to <a href="contact.html">contact us</a>, our customer service center is working for you 24/7.</p>
                      <hr>
-                     <form action="customer-orders.html" method="get">
+                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
                         <div class="form-group">
-                           <label for="name-login">Name</label>
-                           <input id="name-login" type="text" class="form-control">
+                           <label for="name-login">Username</label>
+                           <input id="name-login" type="text" class="form-control"  name="name">
                         </div>
                         <div class="form-group">
                            <label for="email-login">Email</label>
-                           <input id="email-login" type="text" class="form-control">
+                           <input id="email-login" type="text" class="form-control" name="email">
                         </div>
                         <div class="form-group">
                            <label for="password-login">Password</label>
-                           <input id="password-login" type="password" class="form-control">
+                           <input id="password-login" type="password" class="form-control" name="password">
                         </div>
                         <div class="text-center">
                            <button type="submit" class="btn btn-template-outlined"><i class="fa fa-user-md"></i> Register</button>
