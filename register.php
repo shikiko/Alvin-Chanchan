@@ -1,58 +1,58 @@
 <?php 
    $currentPage = 'register';
    require_once("config.php");
-
-// If user posts a request.
-// TODO : Validate input!!!
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  echo '<script>console.log("[DEBUG]POSTING")</script>';
-  $name = trim_input($_POST["name"]);
-  echo '<script>console.log("[DEBUG]Name:';
-  echo $name;
-  echo '")</script>';
-
-  $email = trim_input($_POST["email"]);
-  echo '<script>console.log("[DEBUG]Email:';
-  echo $email;
-  echo '")</script>';
-
-  $password = trim_input($_POST["password"]);
-  echo '<script>console.log("[DEBUG]Password:';
-  echo $password;
-  echo '")</script>';
-
-
-
-  // Create connection
-  $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-  // Check connection
-  if ($conn->connect_error) {
+   
+   // If user posts a request.
+   // TODO : Validate input!!!
+   // TODO: 
+   if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   echo '<script>console.log("[DEBUG]POSTING")</script>';
+   $name = trim_input($_POST["name"]);
+   echo '<script>console.log("[DEBUG]Name:';
+   echo $name;
+   echo '")</script>';
+   
+   $email = trim_input($_POST["email"]);
+   echo '<script>console.log("[DEBUG]Email:';
+   echo $email;
+   echo '")</script>';
+   
+   $password = trim_input($_POST["password"]);
+   echo '<script>console.log("[DEBUG]Password:';
+   echo $password;
+   echo '")</script>';
+   
+   
+   // Create connection
+   $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+   // Check connection
+   if ($conn->connect_error) {
       die("Connection failed: " . $conn->connect_error);
-  }
-
-  $sql = "INSERT INTO User (username, email, password)
-  VALUES ('$email', '$name', '$password')";
-
-  if ($conn->query($sql) === TRUE) {
+   }
+   
+   $sql = "INSERT INTO User (username, email, password)
+   VALUES ('$email', '$name', '$password')";
+   
+   if ($conn->query($sql) === TRUE) {
       echo '<script>console.log("[DEBUG]New record created successfully")</script>';
-  } else {
+   } else {
       $error = "Error: " . $sql . "<br>" . $conn->error;
       echo '<script>console.log("[DEBUG]Password:';
       echo $error;
       echo '")</script>';  
     }
-}
-
-function trim_input($data) {
-  $data = trim($data);
-  $data = stripslashes($data);
-  $data = htmlspecialchars($data);
-  return $data;
-}
-
-// Close connection
-$conn->close();
-?>
+   }
+   
+   function trim_input($data) {
+   $data = trim($data);
+   $data = stripslashes($data);
+   $data = htmlspecialchars($data);
+   return $data;
+   }
+   
+   // Close connection
+   $conn->close();
+   ?>
 <!DOCTYPE html>
 <html>
    <head>
