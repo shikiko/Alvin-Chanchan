@@ -1,6 +1,3 @@
-<?php
-   echo '<script>console.log("[DEBUG]HeaderPHP")</script>';
-?>
 <!-- Top bar-->
 <title>Fast Trade</title>
 <div class="top-bar">
