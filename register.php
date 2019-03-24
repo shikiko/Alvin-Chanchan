@@ -1,8 +1,10 @@
 <?php 
 $currentPage = 'register';
 require_once("config.php");
+$nameErr = $emailErr = $passwordErr = "";
 
 // If user posts a request.
+//TODO: Show error msg. check email validation. encrypt password?
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $check = True;
   echo '<script>console.log("[DEBUG]POSTING")</script>';
@@ -49,6 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    }
       // Close connection
       $conn->close();
+  }else{
+    echo "had errors not inserting";
   }//end of insert
 }// end of post request
 
@@ -112,16 +116,21 @@ function trim_input($data) {
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
                   <div class="form-group">
                     <label for="name-login">Username</label>
+                    <span class="error">* <?php echo $nameErr;?></span>
                     <input id="name-login" type="text" class="form-control"  name="name">
                   </div>
                   <div class="form-group">
                     <label for="email-login">Email</label>
+                    <span class="error">* <?php echo $emailErr;?></span>
                     <input id="email-login" type="text" class="form-control" name="email">
                   </div>
                   <div class="form-group">
                     <label for="password-login">Password</label>
+                    <span class="error">* <?php echo $passwordErr;?></span>
                     <input id="password-login" type="password" class="form-control" name="password">
                   </div>
+                  <span class="error">* required field</span>                   
+
                   <div class="text-center">
                     <button type="submit" class="btn btn-template-outlined"><i class="fa fa-user-md"></i> Register</button>
                   </div>
