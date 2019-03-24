@@ -1,7 +1,7 @@
 <?php 
 $currentPage = 'register';
 require_once("config.php");
-$nameErr = $emailErr = $passwordErr = "";
+$nameErr = $emailErr = $passwordErr = $createErr = "";
 
 // If user posts a request.
 //TODO: Show error msg. check email validation. encrypt password?
@@ -12,48 +12,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nameErr = "Name is required";
     $check = False;
   } else {
-    $name = test_input($_POST["name"]);
+    $name = trim_input($_POST["name"]);
   }
 
   if (empty($_POST["email"])) {
     $emailErr = "email is required";
     $check = False;
   } else {
-    $name = test_input($_POST["email"]);
+    $email = trim_input($_POST["email"]);
   }
 
   if (empty($_POST["password"])) {
     $passwordErr = "password is required";
     $check = False;
   } else {
-    $name = test_input($_POST["password"]);
+    $password = trim_input($_POST["password"]);
   }
 
 
   if($check == True){
-    // Create connection
-    $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-        // Check connection
-    if ($conn->connect_error) {
-     die("Connection failed: " . $conn->connect_error);
-   }
+    if(CheckValid($name, $email)){
+      // Create connection
+      $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+      // Check connection
+      if ($conn->connect_error) {
+        echo "connection error";
+       die("Connection failed: " . $conn->connect_error);
+     }else{
+       $sql = "INSERT INTO User (username, email, password)
+       VALUES ('$name', '$email', '$password')";
 
-   $sql = "INSERT INTO User (username, email, password)
-   VALUES ('$email', '$name', '$password')";
-
-   if ($conn->query($sql) === TRUE) {
-     echo '<script>console.log("[DEBUG]New record created successfully")</script>';
-   } else {
-     $error = "Error: " . $sql . "<br>" . $conn->error;
-     echo '<script>console.log("[DEBUG]Password:';
-     echo $error;
-     echo '")</script>';  
+       if ($conn->query($sql) === TRUE) {
+         echo '<script>console.log("[DEBUG]New record created successfully")</script>';
+       } else {
+         $error = "Error: " . $sql . "<br>" . $conn->error;
+         echo '<script>console.log("[DEBUG]Password:';
+         echo $error;
+         echo '")</script>';  
+       }
+          // Close connection
+          $conn->close();
+      }//end of insert
+    }else{
+    $createErr = "Email/Username already exists";
    }
-      // Close connection
-      $conn->close();
-  }else{
-    echo "had errors not inserting";
-  }//end of insert
+ }//end of checkvalid
 }// end of post request
 
 function trim_input($data) {
@@ -62,6 +65,25 @@ function trim_input($data) {
   $data = htmlspecialchars($data);
   return $data;
 }
+
+//checks if username / email had been used already
+function CheckValid($username, $email){
+    $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+    //checks connection
+    if ($conn->connect_error){
+     die("Connection failed: " . $conn->connect_error);
+   }else{
+      $sql = "select * from User where username = '$username' OR email ='$email'";
+      $result = $conn->query($sql);
+      if ($result->num_rows > 0){
+        return false;
+      }else{
+        return true;
+      }
+    }
+   $conn->close();
+}
+
 
 ?>
   <!DOCTYPE html>
@@ -129,8 +151,7 @@ function trim_input($data) {
                     <span class="error">* <?php echo $passwordErr;?></span>
                     <input id="password-login" type="password" class="form-control" name="password">
                   </div>
-                  <span class="error">* required field</span>                   
-
+                  <span class="error">* <?php if(empty($createErr)){echo "required field";}else{echo $createErr;}?></span>   
                   <div class="text-center">
                     <button type="submit" class="btn btn-template-outlined"><i class="fa fa-user-md"></i> Register</button>
                   </div>
@@ -177,4 +198,3 @@ function trim_input($data) {
       <script src="js/front.js"></script>
     </body>
   </html>
-
