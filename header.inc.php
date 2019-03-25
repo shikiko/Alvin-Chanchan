@@ -1,9 +1,10 @@
 <?php 
-//TODO: LOGOUT
-if(session_status() == PHP_SESSION_NONE){
-    //session has not started
-    session_start();
-}
+session_start();
+echo '<script>console.log("[DEBUG]Header.inc.php")</script>';
+echo '<script>console.log("[DEBUG]session_isset:a';
+echo isset($_SESSION["username"]);
+echo 'a")</script>';  
+
 ?>
 <!-- Top bar-->
 <title>Fast Trade</title>
@@ -18,7 +19,11 @@ if(session_status() == PHP_SESSION_NONE){
                   <li class="list-inline-item"><a href="#"><i class="fa fa-phone"></i></a></li>
                   <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
                </ul>
-               <?php if(session_status() == PHP_SESSION_NONE){
+               <?php
+               echo '<script>console.log("[DEBUG]Session_Status():';
+               echo session_status();
+               echo '")</script>'; 
+               if(!isset($_SESSION["username"])) {
                   //Session has not started (User Has not logged in)
                   echo '<div class="login"><a href="#" data-toggle="modal" data-target="#login-modal" class="login-btn">
                         <i class="fa fa-sign-in"></i><span class="d-none d-md-inline-block">Sign In</span></a>
@@ -36,7 +41,7 @@ if(session_status() == PHP_SESSION_NONE){
                   <i class="fa fa-user"></i><span class="d-none d-md-inline-block">My Profile</span></a>
                   <a href="Inbox.php" class="signup-btn"><i class="fa fa-inbox"></i>
                   <span class="d-none d-md-inline-block">Messages</span></a>
-                  <a href="#" id="logout" class="signup-btn"><i class="fa fa-power-off"></i>
+                  <a href="logout.php" class="signup-btn"><i class="fa fa-power-off"></i>
                   <span class="d-none d-md-inline-block">Logout</span></a>
                   </div>';
                }?>

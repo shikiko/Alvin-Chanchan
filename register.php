@@ -1,6 +1,9 @@
 <?php 
 $currentPage = 'register';
 require_once("config.php");
+echo '<script>console.log("[DEBUG]Password:';
+echo session_id();
+echo '")</script>';  
 echo '<script>console.log("[DEBUG]TEST?")</script>';
 
 $nameErr = $emailErr = $passwordErr = $createErr = $loginEmailErr = $loginPasswordErr = "";
@@ -37,9 +40,10 @@ if (!empty($_POST['login'])){
       // if query checks out
       if ($conn->query($sql) !== FALSE) {
         echo '<script>console.log("[DEBUG]Found you")</script>';
-        // Starting session
+        echo '<script>alert("';
+        echo session_id();
+        echo '");</script>';
         session_start();
-        // Storing session data
         $_SESSION["username"] = $username;
         header("Location: http://localhost/alvin-chanchan/profilepage.php");
       } else {
