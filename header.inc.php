@@ -1,3 +1,9 @@
+<?php 
+if(session_status() == PHP_SESSION_NONE){
+    //session has not started
+    session_start();
+}
+?>
 <!-- Top bar-->
 <title>Fast Trade</title>
 <div class="top-bar">
@@ -11,13 +17,28 @@
                   <li class="list-inline-item"><a href="#"><i class="fa fa-phone"></i></a></li>
                   <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
                </ul>
-               <div class="login"><a href="#" data-toggle="modal" data-target="#login-modal" class="login-btn"><i class="fa fa-sign-in"></i><span class="d-none d-md-inline-block">Sign In</span></a><a href="register.php" class="signup-btn"><i class="fa fa-user"></i><span class="d-none d-md-inline-block">Sign Up</span></a></div>
-               <ul class="social-custom list-inline">
-                  <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                  <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                  <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                  <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
-               </ul>
+               <?php if(session_status() == PHP_SESSION_NONE){
+                  //Session has not started (User Has not logged in)
+                  echo '<div class="login"><a href="#" data-toggle="modal" data-target="#login-modal" class="login-btn">
+                        <i class="fa fa-sign-in"></i><span class="d-none d-md-inline-block">Sign In</span></a>
+                        <a href="register.php" class="signup-btn"><i class="fa fa-user"></i>
+                        <span class="d-none d-md-inline-block">Sign Up</span></a></div>';
+                  echo '<ul class="social-custom list-inline">
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
+                        </ul>';
+               }else{
+                  //Session has started (User Logged in)
+                  echo '<div class="login"><a href="profilepage.php" class="login-btn">
+                  <i class="fa fa-user"></i><span class="d-none d-md-inline-block">My Profile</span></a>
+                  <a href="Inbox.php" class="signup-btn"><i class="fa fa-inbox"></i>
+                  <span class="d-none d-md-inline-block">Messages</span></a>
+                  <a href="#" id="logout" class="signup-btn"><i class="fa fa-power-off"></i>
+                  <span class="d-none d-md-inline-block">Logout</span></a>
+                  </div>';
+               }?>
             </div>
          </div>
       </div>

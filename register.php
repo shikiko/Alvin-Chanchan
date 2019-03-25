@@ -39,7 +39,6 @@ if (!empty($_POST['login'])){
         echo '<script>console.log("[DEBUG]Found you")</script>';
         // Starting session
         session_start();
-         
         // Storing session data
         $_SESSION["username"] = $username;
         header("Location: http://localhost/alvin-chanchan/profilepage.php");
