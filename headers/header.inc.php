@@ -7,7 +7,7 @@ echo 'a")</script>';
 
 ?>
 <!-- Top bar-->
-<title>Fast Trade</title>
+<title>Fast Trade | <?php echo $currentPage;?></title>
 <div class="top-bar">
    <div class="container">
       <div class="row d-flex align-items-center">
