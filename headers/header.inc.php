@@ -86,38 +86,9 @@ echo 'a")</script>';
          <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggler btn-template-outlined"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
          <div id="navigation" class="navbar-collapse collapse">
             <ul class="nav navbar-nav ml-auto">
-               <li class="nav-item dropdown active"><a href="main.php">Home</b></a>
+               <li class="nav-item dropdown <?php if($currentPage=='home'){echo 'active';}?>"><a href="main.php">Home</b></a>
                </li>
-               <li class="nav-item dropdown menu-large">
-                  <a href="#" data-toggle="dropdown" class="dropdown-toggle">Features<b class="caret"></b></a>
-                  <ul class="dropdown-menu megamenu">
-                     <li>
-                        <div class="row">
-                           <div class="col-lg-6"><img src="../img/template-easy-customize.png" alt="" class="img-fluid d-none d-lg-block"></div>
-                           <div class="col-lg-3 col-md-6">
-                              <h5>Shortcodes</h5>
-                              <ul class="list-unstyled mb-3">
-                                 <li class="nav-item"><a href="template-accordions.html" class="nav-link">Accordions</a></li>
-                                 <li class="nav-item"><a href="template-alerts.html" class="nav-link">Alerts</a></li>
-                                 <li class="nav-item"><a href="template-buttons.html" class="nav-link">Buttons</a></li>
-                                 <li class="nav-item"><a href="template-content-boxes.html" class="nav-link">Content boxes</a></li>
-                                 <li class="nav-item"><a href="template-blocks.html" class="nav-link">Horizontal blocks</a></li>
-                                 <li class="nav-item"><a href="template-pagination.html" class="nav-link">Pagination</a></li>
-                                 <li class="nav-item"><a href="template-tabs.html" class="nav-link">Tabs</a></li>
-                                 <li class="nav-item"><a href="template-typography.html" class="nav-link">Typography</a></li>
-                              </ul>
-                           </div>
-                           <div class="col-lg-3 col-md-6">
-                              <h5>Header variations</h5>
-                              <ul class="list-unstyled mb-3">
-                                 <li class="nav-item"><a href="template-header-default.html" class="nav-link">Default sticky header</a></li>
-                                 <li class="nav-item"><a href="template-header-nosticky.html" class="nav-link">No sticky header</a></li>
-                                 <li class="nav-item"><a href="template-header-light.html" class="nav-link">Light header</a></li>
-                              </ul>
-                           </div>
-                        </div>
-                     </li>
-                  </ul>
+               <li class="nav-item dropdown <?php if($currentPage=='browse'){echo 'active';}?>"><a href="browse.php?category=All">Browse</b></a>
                </li>
                <li class="nav-item dropdown menu-large">
                   <a href="#" data-toggle="dropdown" class="dropdown-toggle">Portfolio <b class="caret"></b></a>
