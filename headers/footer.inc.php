@@ -63,11 +63,10 @@
       <div class="container">
          <div class="row">
             <div class="col-lg-4 text-center-md">
-               <p>&copy; 2019. Your company / name goes here</p>
+               <p>&copy; 2019. Fast Trade by Group 4</p>
             </div>
             <div class="col-lg-8 text-right text-center-md">
-               <p>Template design by <a href="https://bootstrapious.com/p/big-bootstrap-tutorial">Bootstrapious </a>& <a href="https://fity.cz/ostrava">Fity</a></p>
-               <!-- Please do not remove the backlink to us unless you purchase the Attribution-free License at https://bootstrapious.com/donate. Thank you. -->
+                <p>Members: Leong Shao Zhi, Ng Kit Seng, Andrew Tan and Lim Yong An</p>
             </div>
          </div>
       </div>
