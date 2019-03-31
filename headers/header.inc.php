@@ -1,10 +1,9 @@
 <?php 
-session_start();
-echo '<script>console.log("[DEBUG]Header.inc.php")</script>';
-echo '<script>console.log("[DEBUG]session_isset:a';
-echo isset($_SESSION["username"]);
-echo 'a")</script>';  
-
+if(!isset($_SESSION["username"])) { 
+    session_start(); 
+}
+require_once("../private/config.php"); 
+require_once("../php_scripts/login_modal.php");
 ?>
 <!-- Top bar-->
 <title>Fast Trade</title>
@@ -29,19 +28,13 @@ echo 'a")</script>';
                         <i class="fa fa-sign-in"></i><span class="d-none d-md-inline-block">Sign In</span></a>
                         <a href="../pages/register.php" class="signup-btn"><i class="fa fa-user"></i>
                         <span class="d-none d-md-inline-block">Sign Up</span></a></div>';
-                  echo '<ul class="social-custom list-inline">
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
-                        </ul>';
                }else{
                   //Session has started (User Logged in)
                   echo '<div class="login"><a href="profilepage.php" class="login-btn">
                   <i class="fa fa-user"></i><span class="d-none d-md-inline-block">My Profile</span></a>
                   <a href="Inbox.php" class="signup-btn"><i class="fa fa-inbox"></i>
                   <span class="d-none d-md-inline-block">Messages</span></a>
-                  <a href="../headers/logout.php" class="signup-btn"><i class="fa fa-power-off"></i>
+                  <a href="../pages/logout.php" class="signup-btn"><i class="fa fa-power-off"></i>
                   <span class="d-none d-md-inline-block">Logout</span></a>
                   </div>';
                }?>
@@ -60,15 +53,16 @@ echo 'a")</script>';
             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
          </div>
          <div class="modal-body">
-            <form action="customer-orders.html" method="get">
-               <div class="form-group">
-                  <input id="email_modal" type="text" placeholder="email" class="form-control">
+              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">               <div class="form-group">
+                  <input id="email-login" type="text" class="form-control" name="username" placeholder="email">
+                  <span class="error"><?php if(!empty($loginusernameErr)){echo $loginusernameErr;}?></span> 
                </div>
                <div class="form-group">
-                  <input id="password_modal" type="password" placeholder="password" class="form-control">
+                  <span class="error"><?php if(!empty($loginPasswordErr)){echo $loginPasswordErr;}?></span>   
+                  <input id="password-login" type="password" class="form-control" name="password" placeholder="password">
                </div>
                <p class="text-center">
-                  <button class="btn btn-template-outlined"><i class="fa fa-sign-in"></i> Log in</button>
+                  <button type="submit" class="btn btn-template-outlined" name='login_modal' value='login_modal'><i class="fa fa-sign-in"></i> Log in</button>
                </p>
             </form>
             <p class="text-center text-muted">Not registered yet?</p>
@@ -82,7 +76,7 @@ echo 'a")</script>';
 <header class="nav-holder make-sticky">
    <div id="navbar" role="navigation" class="navbar navbar-expand-lg">
       <div class="container">
-         <a href="../pages/main.php" class="navbar-brand home"><img src="../img/logo.png" alt="Fastrade logo" class="d-none d-md-inline-block"><img src="../img/logo-small.png" alt="Fasttrade logo" class="d-inline-block d-md-none"><span class="sr-only">FastTrade</span></a>
+         <a href="../pages/main.php" class="navbar-brand home"><img src="../img/custom/FastTradeLogo.png" alt="Fastrade logo" class="d-none d-md-inline-block"><img src="../img/custom/SmallFastTradeLogo.png" alt="Fasttrade logo" class="d-inline-block d-md-none"><span class="sr-only">FastTrade</span></a>
          <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggler btn-template-outlined"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
          <div id="navigation" class="navbar-collapse collapse">
             <ul class="nav navbar-nav ml-auto">

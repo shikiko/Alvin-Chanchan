@@ -1,5 +1,8 @@
 <?php 
   $currentPage = 'profile'; 
+  require_once("../private/config.php");
+  require_once("../php_scripts/profile_edit.php");
+
 ?>
 <html>
   <head>
@@ -65,12 +68,6 @@
                       <div class="form-group">
                         <label for="password_1">New password</label>
                         <input id="password_1" type="password" class="form-control">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="password_2">Retype new password</label>
-                        <input id="password_2" type="password" class="form-control">
                       </div>
                     </div>
                   </div>

@@ -1,11 +1,7 @@
 <?php
-
-echo '<script>console.log("[DEBUG]Password:';
-echo session_id();
-echo '")</script>';  
-echo '<script>console.log("[DEBUG]TEST?")</script>';
-
-$nameErr = $emailErr = $passwordErr = $createErr = $loginEmailErr = $loginPasswordErr = "";
+require_once("../php_scripts/functions.php");
+require_once("../php_scripts/verifyEmail.php");
+$nameErr = $emailErr = $passwordErr = $createErr = $loginEmailErr = $loginPasswordErr = $successfulRegister ="";
 // If user posts a request.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -36,26 +32,23 @@ if (!empty($_POST['login'])){
       die("Connection failed: " . $conn->connect_error);
     }else{
       $sql = "select * from User where username = '$username' AND password ='$password'";
-      // if query checks out
+      // if query checks out (successful login)
       if ($conn->query($sql) !== FALSE) {
-        echo '<script>console.log("[DEBUG]Found you")</script>';
-        echo '<script>alert("';
-        echo session_id();
-        echo '");</script>';
-        session_start();
-        $_SESSION["username"] = $username;
-        header("Location: http://localhost/alvin-chanchan/profilepage.php");
+          echo '<script>console.log("[DEBUG]Found you")</script>';
+          session_start();
+          $_SESSION["username"] = $username;
+            header("Refresh:0");
       } else {
         $error = "Error: " . $sql . "<br>" . $conn->error;
-        echo '<script>console.log("[DEBUG]SQL Staement:';
-        echo $error;
-        echo '")</script>';  
+          echo '<script>console.log("[DEBUG]SQL Statement:';
+          echo $error;
+          echo '")</script>';
       }
-    // Close connection
+    //Close connection
       $conn->close();
     }//end of insert
-  }
-} 
+  }//end of $check = true
+}//end of !empty post login
 
 // if register button is clicked
 if (!empty($_POST["register"])){ 
@@ -93,14 +86,20 @@ if (!empty($_POST["register"])){
       $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
     // Check connection
       if ($conn->connect_error) {
-        echo "connection error";
+        echo '<script>console.log("';
+        echo 'connection error';
+        echo '")</script>';
         die("Connection failed: " . $conn->connect_error);
       }else{
-        $sql = "INSERT INTO User (username, email, password)
-        VALUES ('$name', '$email', '$password')";
-
+        $hash = md5(rand(0,1000));
+        $sql = "INSERT INTO User (username, email, password,hash)
+        VALUES ('$name', '$email', '$password', '$hash')";
+        //If registration is successful
         if ($conn->query($sql) === TRUE) {
           echo '<script>console.log("[DEBUG]New record created successfully")</script>';
+          $successfulRegister = true;
+          //Generates md5 hash
+          SendVerficationEmail($email, $hash);
         } else {
           $error = "Error: " . $sql . "<br>" . $conn->error;
           echo '<script>console.log("[DEBUG]Password:';
@@ -116,13 +115,6 @@ if (!empty($_POST["register"])){
     }//end of ($check==true)
     }// end of post request
   } 
-
-  function trim_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-  }
 
 //checks if username / email had been used already
   function CheckValid($username, $email){

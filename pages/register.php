@@ -1,7 +1,7 @@
 <?php 
 $currentPage = 'register';
 require_once("../private/config.php");
-require_once("../php_scripts/register_login.php")
+require_once("../php_scripts/register_login.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -52,6 +52,7 @@ require_once("../php_scripts/register_login.php")
               <p class="lead">Not our registered customer yet?</p>
               <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
               <hr>
+              <?php if($successfulRegister == true){echo '<div role="alert" class="alert alert-success">Your account has been made, Please verify it by clicking the activation link that has been send to your email.</div>';} ?>
               <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
                 <input type='hidden' name='action' value='register' />
                 <div class="form-group">
