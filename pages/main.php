@@ -83,9 +83,15 @@ if ($_SERVER['QUERY_STRING'] == ''){
                     echo '<div class="product">';
                     echo '<div class="image"><a href="listing.php?id=';
                     echo $row['ItemID'];
-                    echo '"><img src="data:image/jpg;base64,' . base64_encode($row['itemPicture']) . '" alt="';
-                    echo $row['ItemName'];
-                    echo '" class="img-fluid image1">';
+                    echo '">';
+                    if ($row['itemPicture'] == NULL) {
+                        echo '<img src="../img/NoImg.png" alt="No Image Available" class="img-fluid image1">';
+                    }
+                    else {
+                        echo '<img src="data:image/jpg;base64,' . base64_encode($row['itemPicture']) . '" alt="';
+                        echo $row['ItemName'];
+                        echo '" class="img-fluid image1">';
+                    }
                     echo '</div>';
                     echo '<div class="text">';
                     echo '<h3 class=h5>';
@@ -107,9 +113,15 @@ if ($_SERVER['QUERY_STRING'] == ''){
                     echo '<div class="product">';
                     echo '<div class="image"><a href="listing.php?id=';
                     echo $selectiveRow['ItemID'];
-                    echo '"><img src="data:image/jpg;base64,' . base64_encode($selectiveRow['itemPicture']) . '" alt="';
-                    echo $selectiveRow['ItemName'];
-                    echo '" class="img-fluid image1">';
+                    echo '">';
+                   if ($selectiveRow['itemPicture'] == NULL) {
+                        echo '<img src="../img/NoImg.png" alt="No Image Available" class="img-fluid image1">';
+                    }
+                    else {
+                        echo '<img src="data:image/jpg;base64,' . base64_encode($selectiveRow['itemPicture']) . '" alt="';
+                        echo $selectiveRow['ItemName'];
+                        echo '" class="img-fluid image1">';
+                    }
                     echo '</div>';
                     echo '<div class="text">';
                     echo '<h3 class=h5>';
