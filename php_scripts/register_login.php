@@ -4,7 +4,6 @@ require_once("../php_scripts/verifyEmail.php");
 $nameErr = $emailErr = $passwordErr = $createErr = $loginEmailErr = $loginPasswordErr = $successfulRegister ="";
 // If user posts a request.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
 //if login button is clicked
 if (!empty($_POST['login'])){
   $check = true;

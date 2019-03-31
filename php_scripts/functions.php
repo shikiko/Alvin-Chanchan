@@ -7,4 +7,9 @@ function trim_input($data) {
 	return $data;
 }
 
+function error_found(){
+  header("Location: 404.php");
+}
+
+
 ?>
