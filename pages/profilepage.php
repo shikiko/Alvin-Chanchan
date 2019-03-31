@@ -2,7 +2,6 @@
   $currentPage = 'profile'; 
   require_once("../private/config.php");
   require_once("../php_scripts/profile_edit.php");
-
 ?>
 <html>
   <head>
@@ -48,8 +47,7 @@
         <div class="container">
           <div class="row bar">
             <div id="customer-account" class="col-lg-9 clearfix">
-              <p class="lead">Welcome, <?php echo $_SESSION["username"]; ?></p>
-              <p class="text-muted">This is your profile page.</p>
+              <h1 class="text-upper">Welcome, <?php echo $_SESSION["username"]; ?></h1>
              <div class="box mt-5">
                 <div class="heading">
                   <h3 class="text-uppercase">Change password</h3>
@@ -161,26 +159,14 @@
                 </div>
                 <div class="panel-body">
                   <ul class="nav nav-pills flex-column text-sm">
+                    <li class="nav-item"><a href="customer-account.html" class="nav-link"><i class="fa fa-user"></i> My account</a></li>
                     <li class="nav-item"><a href="customer-orders.html" class="nav-link active"><i class="fa fa-list"></i> My orders</a></li>
                     <li class="nav-item"><a href="customer-wishlist.html" class="nav-link"><i class="fa fa-heart"></i> My wishlist</a></li>
-                    <li class="nav-item"><a href="customer-account.html" class="nav-link"><i class="fa fa-user"></i> My account</a></li>
-                    <li class="nav-item"><a href="index.html" class="nav-link"><i class="fa fa-sign-out"></i> Logout</a></li>
+                    <li class="nav-item"><a href="logout.php" class="nav-link"><i class="fa fa-sign-out"></i> Logout</a></li>
                   </ul>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <!-- GET IT-->
-      <div class="get-it">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 text-center p-3">
-              <h3>Do you want cool website like this one?</h3>
-            </div>
-            <div class="col-lg-4 text-center p-3">   
-            <a href="#" class="btn btn-template-outlined-white">Buy this template now</a></div>
           </div>
         </div>
       </div>

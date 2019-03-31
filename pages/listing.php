@@ -84,7 +84,7 @@
                         }
                         ?>
                       <p class="text-center">
-                        <button type="submit" class="btn btn-template-outlined"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+                        <button type="submit" formaction="inbox.php" method="post" class="btn btn-template-outlined"><i class="fa fa-shopping-cart"></i> Chat now!</button>
                       </p>
                     </form>
                   </div>

@@ -4,6 +4,10 @@ if(!isset($_SESSION["username"])) {
 }
 require_once("../private/config.php"); 
 require_once("../php_scripts/login_modal.php");
+require_once("../php_scripts/functions.php");
+set_error_handler('error_found');
+
+
 ?>
 <!-- Top bar-->
 <title>Fast Trade | <?php echo $currentPage;?></title>
@@ -54,12 +58,12 @@ require_once("../php_scripts/login_modal.php");
          </div>
          <div class="modal-body">
               <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">               <div class="form-group">
-                  <input id="email-login" type="text" class="form-control" name="username" placeholder="email">
+                  <input id="email-login" type="text" class="form-control" name="username" placeholder="Username">
                   <span class="error"><?php if(!empty($loginusernameErr)){echo $loginusernameErr;}?></span> 
                </div>
                <div class="form-group">
                   <span class="error"><?php if(!empty($loginPasswordErr)){echo $loginPasswordErr;}?></span>   
-                  <input id="password-login" type="password" class="form-control" name="password" placeholder="password">
+                  <input id="password-login" type="password" class="form-control" name="password" placeholder="Password">
                </div>
                <p class="text-center">
                   <button type="submit" class="btn btn-template-outlined" name='login_modal' value='login_modal'><i class="fa fa-sign-in"></i> Log in</button>
@@ -76,7 +80,7 @@ require_once("../php_scripts/login_modal.php");
 <header class="nav-holder make-sticky">
    <div id="navbar" role="navigation" class="navbar navbar-expand-lg">
       <div class="container">
-         <a href="../pages/main.php" class="navbar-brand home"><img src="../img/custom/FastTradeLogo.png" alt="Fastrade logo" class="d-none d-md-inline-block"><img src="../img/custom/SmallFastTradeLogo.png" alt="Fasttrade logo" class="d-inline-block d-md-none"><span class="sr-only">FastTrade</span></a>
+         <a href="../pages/main.php" class="navbar-brand home"><img src="../img/Logo.png" alt="Fastrade logo" class="d-none d-md-inline-block"><img src="../img/logo-small.png" alt="Fasttrade logo" class="d-inline-block d-md-none"><span class="sr-only">FastTrade</span></a>
          <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggler btn-template-outlined"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
          <div id="navigation" class="navbar-collapse collapse">
             <ul class="nav navbar-nav ml-auto">
