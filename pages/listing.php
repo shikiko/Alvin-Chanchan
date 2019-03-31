@@ -112,7 +112,7 @@
               </div>
               <div class="row">
                 <?php
-                $othsql="SELECT ItemID,itemPicture,ItemName,Price FROM items where Seller ='".Seller."' AND ItemID !=".id;
+                $othsql="SELECT ItemID,itemPicture,ItemName,Price FROM items where Sold = 0 AND Active= 1 AND Seller ='".Seller."' AND ItemID !=".id;
                 if($othresult= mysqli_query($connection,$othsql)){
                     while ($row = mysqli_fetch_assoc($othresult)) {
                         echo '<div class="col-lg-3 col-md-6">';
