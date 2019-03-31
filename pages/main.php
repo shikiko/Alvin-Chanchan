@@ -76,13 +76,14 @@ if ($_SERVER['QUERY_STRING'] == ''){
                             <div class="row products products-big">
 <?php
         if ($FCatType == 'All') {
-            $sql = "SELECT ItemName, Category, Price, Active, Sold, itemPicture FROM items WHERE Sold = 0 AND Active = 1";
+            $sql = "SELECT ItemID, ItemName, Category, Price, Active, Sold, itemPicture FROM items WHERE Sold = 0 AND Active = 1";
             if ($result = mysqli_query($connection, $sql)) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo '<div class="col-lg-4 col-md-6">';
                     echo '<div class="product">';
-                    echo '<div class="image">';
-                    echo '<img src="data:image/jpg;base64,' . base64_encode($row['itemPicture']) . '" alt="';
+                    echo '<div class="image"><a href="listing.php?id=';
+                    echo $row['ItemID'];
+                    echo '"><img src="data:image/jpg;base64,' . base64_encode($row['itemPicture']) . '" alt="';
                     echo $row['ItemName'];
                     echo '" class="img-fluid image1">';
                     echo '</div>';
@@ -99,13 +100,14 @@ if ($_SERVER['QUERY_STRING'] == ''){
             }
         } 
         else {
-            $selectiveSQL = "SELECT ItemName, Category, Price, Active, Sold, itemPicture FROM items WHERE Sold = 0 AND Active = 1 AND Category ='" . $FCatType . "'";
+            $selectiveSQL = "SELECT ItemID, ItemName, Category, Price, Active, Sold, itemPicture FROM items WHERE Sold = 0 AND Active = 1 AND Category ='" . $FCatType . "'";
             if ($selectiveresult = mysqli_query($connection, $selectiveSQL)) {
                 while ($selectiveRow = mysqli_fetch_assoc($selectiveresult)) {
                     echo '<div class="col-lg-4 col-md-6">';
                     echo '<div class="product">';
-                    echo '<div class="image">';
-                    echo '<img src="data:image/jpg;base64,' . base64_encode($selectiveRow['itemPicture']) . '" alt="';
+                    echo '<div class="image"><a href="listing.php?id=';
+                    echo $selectiveRow['ItemID'];
+                    echo '"><img src="data:image/jpg;base64,' . base64_encode($selectiveRow['itemPicture']) . '" alt="';
                     echo $selectiveRow['ItemName'];
                     echo '" class="img-fluid image1">';
                     echo '</div>';
