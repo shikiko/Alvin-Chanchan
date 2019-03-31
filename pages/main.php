@@ -1,5 +1,9 @@
 <?php
 $currentPage = 'home';
+if ($_SERVER['QUERY_STRING'] == ''){
+    header('Location: main.php?category=All');
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -129,7 +133,7 @@ $currentPage = 'home';
                                 <div class="panel-body">
                                     <ul class="nav nav-pills flex-column text-sm category-menu">
                                         <li class="nav-item">
-                                            <a href="browse.php?category=All" class="nav-link d-flex align-items-center justify-content-between"><span>All</span><span class="badge badge-secondary">
+                                            <a href="main.php?category=All" class="nav-link d-flex align-items-center justify-content-between"><span>All</span><span class="badge badge-secondary">
                                             <?php
                                             $Asql = "SELECT COUNT(*) FROM items WHERE Sold = 0 AND Active = 1";
                                             if ($Aresult = mysqli_query($connection, $Asql)) {
@@ -140,7 +144,7 @@ $currentPage = 'home';
                                             ?>
                                                 </span></a>
                                             <ul class="nav nav-pills flex-column">
-                                                <li class="nav-item"><a href="browse.php?category=HomeAppliances" class="nav-link">Home Appliances
+                                                <li class="nav-item"><a href="main.php?category=HomeAppliances" class="nav-link">Home Appliances
                                                         <span class="badge badge-secondary">
                                                     <?php
                                                     $HAsql = "SELECT COUNT(*) FROM items WHERE Category = 'Home Appliances' AND Sold = 0 AND Active = 1";
@@ -151,7 +155,7 @@ $currentPage = 'home';
                                                     }
                                                     ?>
                                                         </span></a></li>
-                                                <li class="nav-item"><a href="browse.php?category=Furniture" class="nav-link">Furniture
+                                                <li class="nav-item"><a href="main.php?category=Furniture" class="nav-link">Furniture
                                                         <span class="badge badge-secondary">
                                                             <?php
                                                             $Fsql = "SELECT COUNT(*) FROM items WHERE Category = 'Furniture' AND Sold = 0 AND Active = 1";
@@ -162,7 +166,7 @@ $currentPage = 'home';
                                                             }
                                                             ?>
                                                         </span></a></li>
-                                                <li class="nav-item"><a href="browse.php?category=ComputersAndIT" class="nav-link">Computers and IT
+                                                <li class="nav-item"><a href="main.php?category=ComputersAndIT" class="nav-link">Computers and IT
                                                         <span class="badge badge-secondary">
                                                             <?php
                                                             $CITsql = "SELECT COUNT(*) FROM items WHERE Category = 'Computers and IT' AND Sold = 0 AND Active = 1";
@@ -173,7 +177,7 @@ $currentPage = 'home';
                                                             }
                                                             ?>
                                                         </span></a></li>
-                                                <li class="nav-item"><a href="browse.php?category=Kids" class="nav-link">Kids
+                                                <li class="nav-item"><a href="main.php?category=Kids" class="nav-link">Kids
                                                         <span class="badge badge-secondary">
                                                             <?php
                                                             $Ksql = "SELECT COUNT(*) FROM items WHERE Category = 'Kids' AND Sold = 0 AND Active = 1";
@@ -184,7 +188,7 @@ $currentPage = 'home';
                                                             }
                                                             ?>
                                                         </span></a></li>
-                                                <li class="nav-item"><a href="browse.php?category=HomeRepairsAndServices" class="nav-link">Home Repairs & Services
+                                                <li class="nav-item"><a href="main.php?category=HomeRepairsAndServices" class="nav-link">Home Repairs & Services
                                                         <span class="badge badge-secondary">
                                                             <?php
                                                             $RSsql = "SELECT COUNT(*) FROM items WHERE Category = 'Home Repairs and Services' AND Sold = 0 AND Active = 1";
