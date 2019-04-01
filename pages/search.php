@@ -84,17 +84,21 @@ $currentPage = 'Search';
                             $RawSearchResults = mysqli_query($sConn, $SearchSQL);
                             if(mysqli_num_rows($RawSearchResults) > 0){
                                 while($SearchResults = mysqli_fetch_assoc($RawSearchResults)){
-                                    echo '<div class="col-md-8">';
-                                    echo '<h4><a href="listing.php?id=';
+                                    echo '<div class="col-md-9">';
+                                    echo '<h3 class="h5"><a href="listing.php?id=';
                                     echo $SearchResults['ItemID'];
                                     echo '">';
                                     echo $SearchResults['ItemName'];
-                                    echo '</a></h4>';
+                                    echo '</a></h3>';
                                     echo '</div>';
-                                    echo '<div class="col-md-4 mx-auto"><h4>';
-                                    echo 'By: ';
+                                    echo '<div class="col-md-3 mx-auto"><h3 class="h5">';
+                                    echo 'By:   ';
+                                    echo '<a href="profile.php?username=';
                                     echo $SearchResults['Seller'];
-                                    echo '</h4></div>';
+                                    echo '">    ';
+                                    echo $SearchResults['Seller'];
+                                    echo '</a>';
+                                    echo '</h3></div>';
                                 }
                             }
                             else {
