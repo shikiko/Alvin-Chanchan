@@ -1,6 +1,15 @@
 /* your styles go here */
 
-
 .error {
 	color: #FF0000;
+}
+
+.fix{
+	position:relative;
+	top:22% !important;
+}
+
+.fixword{
+	position: relative;
+	top:20%;
 }

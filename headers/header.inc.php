@@ -1,7 +1,10 @@
 <?php 
-if(!isset($_SESSION["username"])) { 
+if(!isset($_SESSION["username"])){
     session_start(); 
 }
+
+//echo $_SESSION["current_user"];
+
 require_once("../private/config.php"); 
 require_once("../php_scripts/login_modal.php");
 require_once("../php_scripts/functions.php");
@@ -33,7 +36,8 @@ require_once("../php_scripts/functions.php");
                         <span class="d-none d-md-inline-block">Sign Up</span></a></div>';
                }else{
                   //Session has started (User Logged in)
-                  echo '<div class="login"><a href="editprofile.php" class="login-btn">
+                  echo '<div class="login"><a class="login-btn" href="../pages/profile.php?username='.($_SESSION["username"]);
+                  echo'">
                   <i class="fa fa-user"></i><span class="d-none d-md-inline-block">My Profile</span></a>
                   <a href="Inbox.php" class="signup-btn"><i class="fa fa-inbox"></i>
                   <span class="d-none d-md-inline-block">Messages</span></a>

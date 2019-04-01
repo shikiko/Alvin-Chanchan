@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		  	if ($conn->query($sql) !== FALSE) {
 		    	echo '<script>console.log("[DEBUG]Found you")</script>';
 			    $_SESSION["username"] = $username;
+			    $_SESSION["current_user"] = $username;
         		header("Refresh:0");
 		  	}else{
 			    $error = "Error: " . $sql . "<br>" . $conn->error;
