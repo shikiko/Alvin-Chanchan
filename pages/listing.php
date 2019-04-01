@@ -1,6 +1,9 @@
 <?php
     $currentPage = 'Listing';
     define('id',$_GET['id']);
+    if ($_SERVER['QUERY_STRING'] == ''){
+    header('Location: main.php?category=All');
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -111,7 +114,7 @@
               </div>                
               <div class="row">
                 <div class="col-lg-12 col-md-12">
-                  <div class="box text-uppercase mt-0 mb-small">
+                  <div class= "text-uppercase mt-0 mb-small">
                     <h3>Other Products from this Seller</h3>
                   </div>
                 </div>
@@ -129,7 +132,7 @@
                             echo '<img src="../img/NoImg.png" alt="No Image Available" class="img-fluid image1">';
                     }
                         else {
-                            echo '<img height=200 src="data:image/jpg;base64,' . base64_encode($row['itemPicture']) . '" alt="';
+                            echo '<img class="img-fluid image1"  src="data:image/jpg;base64,' . base64_encode($row['itemPicture']) . '" alt="';
                             echo $row['ItemName'];
                             echo '" >';
                     }
