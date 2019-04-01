@@ -29,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	  		if($password_1 === $password_2){
 		  		if(ValidatePassword($password_old)){
 		  			if(UpdatePassword($password_1)){
+		  				$successfulUpdate = true;
 		  				$successfully = true;
 		  			}
 		  		}else{
@@ -45,8 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$gender = trim_input($_POST['gender']);
 		//checks if phone input is empty
 		if (!empty($_POST["phone"])){
+			//checks if input is numeric
 			if(is_numeric($_POST["phone"])){
 				$phone = trim_input($_POST["phone"]);
+				UploadTelephone($phone);
 			}else{
 				$phone = 'NULL';
 				$phoneErr = ' Please enter a valid phone number';
@@ -54,12 +57,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	  	}else{
 	  		$phone ='NULL';
 	  	}
-	  	//checks if phone input is empty
+	  	//Checks if upload image is empty.hi
 		if (!empty(basename($_FILES["fileToUpload"]["name"]))){
 			$image = basename($_FILES["fileToUpload"]["name"]);
 			$imagename = UploadImage($image);
 			if($imagename != "False"){
 				UploadPathToDB($imagename);
+				$successfulUpdate = true;
 			}
 	  	}else{
 	  		$image ='NULL';
@@ -201,4 +205,29 @@ function UploadPathToDB($imagename){
     //Close connection
 	}//end of else
 }
+
+function UploadTelephone($phone){
+	$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+	$username = $_SESSION["username"];
+	//Checks if connections exists
+	if ($conn->connect_error) {
+      echo "connection error";
+      die("Connection failed: " . $conn->connect_error);
+      return false;
+    }else{
+		$sql = "Update user set ContactNumber ='$phone' where username='$username'";
+		//checks if record is successful (true = successful)
+		if ($conn->query($sql) === TRUE) {
+		    //echo "Record updated successfully";
+		    $conn->close();
+		    return true;
+		} else {
+		    //echo "Error updating record: " . $conn->error;
+		    $conn->close();
+		    return false;
+		}
+    //Close connection
+	}//end of else
+}
+
 ?>

@@ -33,7 +33,7 @@ require_once("../php_scripts/functions.php");
                         <span class="d-none d-md-inline-block">Sign Up</span></a></div>';
                }else{
                   //Session has started (User Logged in)
-                  echo '<div class="login"><a href="profilepage.php" class="login-btn">
+                  echo '<div class="login"><a href="editprofile.php" class="login-btn">
                   <i class="fa fa-user"></i><span class="d-none d-md-inline-block">My Profile</span></a>
                   <a href="Inbox.php" class="signup-btn"><i class="fa fa-inbox"></i>
                   <span class="d-none d-md-inline-block">Messages</span></a>
