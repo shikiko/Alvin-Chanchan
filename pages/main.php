@@ -2,7 +2,6 @@
 $currentPage = 'Home';
 if ($_SERVER['QUERY_STRING'] == ''){
     header('Location: main.php?category=All');
-    exit();
 }
 ?>
 <!DOCTYPE html>
