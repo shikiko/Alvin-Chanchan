@@ -1,5 +1,5 @@
 <?php
-$currentPage = 'search';
+$currentPage = 'Search';
 ?>
 
 <!DOCTYPE html>

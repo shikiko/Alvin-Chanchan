@@ -60,9 +60,15 @@
                         if($NIresult= mysqli_query($connection,$NIsql)){
                             while ($row = mysqli_fetch_assoc($NIresult)) {
                               echo'<h2>'.$row['ItemName'].'</h2>';
-                              echo '<img src="data:image/jpg;base64,' . base64_encode($row['itemPicture']) . '" alt="';
+                              if ($row['itemPicture'] == NULL) {
+                                echo '<img src="../img/NoImg.png" alt="No Image Available" class="img-fluid image1">';
+                                    }
+                               else {
+                             echo '<img src="data:image/jpg;base64,' . base64_encode($row['itemPicture']) . '" alt="';
                               echo $row['ItemName'];
                               echo '" class="img-fluid image1">';
+                               }
+
                             }
                         }
                     ?>
@@ -117,9 +123,16 @@
                     while ($row = mysqli_fetch_assoc($othresult)) {
                         echo '<div class="col-lg-3 col-md-6">';
                         echo '<div class=product>';
-                        echo '<div class=image><a href="listing.php?id='.$row['ItemID'].'"><img height=200 src="data:image/jpg;base64,' . base64_encode($row['itemPicture']) . '" alt="';
-                              echo $row['ItemName'];
-                              echo '" ></a></div>';
+                        echo '<div class=image><a href="listing.php?id='.$row['ItemID'].'">';
+                        if ($row['itemPicture'] == NULL) {
+                            echo '<img src="../img/NoImg.png" alt="No Image Available" class="img-fluid image1">';
+                    }
+                        else {
+                            echo '<img height=200 src="data:image/jpg;base64,' . base64_encode($row['itemPicture']) . '" alt="';
+                            echo $row['ItemName'];
+                            echo '" >';
+                    }
+                              echo '</a></div>';
                         echo '<div class=text>';
                         echo '<h3 class=h5><a href="listing.php?id='.$row['ItemID'].'">'.$row['ItemName'].'</a></h3>';
                         echo '<p class=price>'.$row['Price'].'</p>';
