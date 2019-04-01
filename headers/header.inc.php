@@ -83,9 +83,9 @@ require_once("../php_scripts/functions.php");
          <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggler btn-template-outlined"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
          <div id="navigation" class="navbar-collapse collapse">
             <ul class="nav navbar-nav ml-auto">
-               <li class="nav-item dropdown <?php if($currentPage=='home'){echo 'active';}?>"><a href="main.php">Home</b></a>
+               <li class="nav-item dropdown <?php if($currentPage=='home'){echo 'active';}?>"><a href="main.php?category=All">Home</b></a>
                </li>
-               <li class="nav-item dropdown <?php if($currentPage=='browse'){echo 'active';}?>"><a href="browse.php?category=All">Browse</b></a>
+               <li class="nav-item dropdown <?php if($currentPage=='search'){echo 'active';}?>"><a href="search.php">Search</b></a>
                </li>
                <li class="nav-item dropdown menu-large">
                   <a href="#" data-toggle="dropdown" class="dropdown-toggle">Portfolio <b class="caret"></b></a>
