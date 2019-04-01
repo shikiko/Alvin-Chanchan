@@ -87,9 +87,9 @@ require_once("../php_scripts/functions.php");
          <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggler btn-template-outlined"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
          <div id="navigation" class="navbar-collapse collapse">
             <ul class="nav navbar-nav ml-auto">
-               <li class="nav-item dropdown <?php if($currentPage=='home'){echo 'active';}?>"><a href="main.php?category=All">Home</b></a>
+               <li class="nav-item dropdown <?php if($currentPage=='Home'){echo 'active';}?>"><a href="main.php?category=All">Home</b></a>
                </li>
-               <li class="nav-item dropdown <?php if($currentPage=='search'){echo 'active';}?>"><a href="search.php">Search</b></a>
+               <li class="nav-item dropdown <?php if($currentPage=='Search'){echo 'active';}?>"><a href="search.php">Search</b></a>
                </li>
                <li class="nav-item dropdown menu-large">
                   <a href="#" data-toggle="dropdown" class="dropdown-toggle">Portfolio <b class="caret"></b></a>
@@ -254,7 +254,7 @@ require_once("../php_scripts/functions.php");
          <div class="col-md-5">
             <ul class="breadcrumb d-flex justify-content-end">
                <li class="breadcrumb-item"><a href="main.php">Home</a></li>
-               <?php if($currentPage != 'home'){
+               <?php if($currentPage != 'Home'){
                   echo '<li class="breadcrumb-item active">';
                   echo $currentPage;
                   echo '</li>';
