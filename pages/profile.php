@@ -2,11 +2,13 @@
   $currentPage = 'Profile'; 
   require_once("../private/config.php");
   require_once("../php_scripts/profile_view.php");
+  include("../headers/header.inc.php");
 ?>
 <html>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Universal - All In 1 Template</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -35,17 +37,22 @@
     <link rel="apple-touch-icon" sizes="120x120" href="../img/apple-touch-icon-120x120.png">
     <link rel="apple-touch-icon" sizes="144x144" href="../img/apple-touch-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="../img/apple-touch-icon-152x152.png">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
   </head>
   <body>
-    <div id="all">
-    <?php include("../headers/header.inc.php");?>
-<div id="content" class="team-member-detail">
+    <div id="content" class="team-member-detail">
         <div class="container">
           <section class="bar">
             <div class="row">
               <div class="col-md-12">
                 <div class="heading">
-                  <h2>About Han</h2>
+                <?php
+                  echo '<h2>About ';
+                  echo $_GET['username'];
+                  echo "</h2>";
+                  ?>
                 </div>
               </div>
             </div>
@@ -57,13 +64,13 @@
                 </div>
                 <ul class="ul-icons list-unstyled">
                   <li>
-                    <div class="icon-filled"><i class="fa fa-phone"></i></div>Phone here
+                    <div class="icon-filled"><i class="fa fa-phone fix"></i></div><span class="fixword">Phone here</span>
                   </li>
                   <li>
-                    <div class="icon-filled"><i class="fa fa-envelope"></i></div>Email here
+                    <div class="icon-filled"><i class="fa fa-envelope fix"></i></div>Email here
                   </li>
                   <li>
-                    <div class="icon-filled"><i class="fa fa-user"></i></div>Gender
+                    <div class="icon-filled"><i class="fa fa-user fix"></i></div>Gender
                   </li>
                 </ul>
               </div>
@@ -89,9 +96,8 @@
             </div>
           </div>
         </section>
-      </div
+      </div>
     <?php include("../headers/footer.inc.php"); ?>
-    </div>
     <!-- Javascript files-->
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/popper.js/umd/popper.min.js"> </script>

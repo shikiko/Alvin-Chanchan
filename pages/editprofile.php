@@ -1,6 +1,8 @@
 <?php 
-  $currentPage = 'Edit Profile'; 
+  $currentPage = 'Edit Profile';
+  include("../headers/header.inc.php");
   require_once("../private/config.php");
+  require("../php_scripts/profile_edit.php");
 ?>
 <html>
   <head>
@@ -40,8 +42,6 @@
   </head>
   <body>
     <div id="all">
-      <?php include("../headers/header.inc.php");
-        require("../php_scripts/profile_edit.php"); ?>
       <div id="content">
         <div class="container">
           <div class="row bar">

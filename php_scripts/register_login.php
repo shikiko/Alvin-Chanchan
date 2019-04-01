@@ -36,6 +36,7 @@ if (!empty($_POST['login'])){
           echo '<script>console.log("[DEBUG]Found you")</script>';
           session_start();
           $_SESSION["username"] = $username;
+          $_SESSION["current_user"] = $username;
             header("Refresh:0");
       } else {
         $error = "Error: " . $sql . "<br>" . $conn->error;

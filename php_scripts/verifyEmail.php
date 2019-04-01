@@ -7,7 +7,7 @@ require_once("../thirdpartyvendors/SMTP.php");
 
 echo '<script>console.log("[DEBUG]Sending Email")</script>';
 $to = $email;
-$subject = '[FastTrade]Email Verification'; // Give the email a subject 
+$subject = 'Email Verification'; // Give the email a subject 
 
 $mail = new PHPMailer\PHPMailer\PHPMailer();
 $mail->IsSMTP(); // enable SMTP

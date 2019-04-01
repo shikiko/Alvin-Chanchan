@@ -1,9 +1,10 @@
 <?php
-$currentPage = 'Search';
+$currentPage = 'Contact Us';
 ?>
 
 <!DOCTYPE html>
 <html>
+  <head>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,81 +39,77 @@ $currentPage = 'Search';
         <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    </head>
+  </head>
   <body>
     <div id="all">
-        <?php 
-        include ("../headers/header.inc.php");
-        require_once ("../private/config.php");
-        
-        $sConn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-        if (mysqli_connect_errno()) {
-                die(mysqli_connect_errno());
-            }
-        ?>
+      <?php
+      include ('../headers/header.inc.php');
+      ?>
       <div id="content">
         <div id="contact" class="container">
           <section class="bar">
             <div class="row">
               <div class="col-md-12">
                 <div class="heading">
-                  <h2>Trying to find something?</h2>
+                  <h2>We are here to help you</h2>
                 </div>
+                <p class="lead">Need help with something? Drop us an email with your question!</p>
+                <p class="text-sm">Please feel free to contact us, we will get back to you as soon as we can.</p>
               </div>
             </div>
           </section>
           <section class="bar pt-0">
             <div class="row">
-              <div class="col-md-10 mx-auto">
-                  <form role="search" class="navbar-form" action="search.php" method="GET">
-                      <div class="input-group">
-                          <input type="text" placeholder="Search" class="form-control" name="searchtxt"><span class="input-group-btn">
-                              <button type="submit" class="btn btn-template-main" value="Searchbtn"><i class="fa fa-search"></i></button></span>
+              <div class="col-md-12">
+                <div class="heading text-center">
+                  <h2>Contact form</h2>
+                </div>
+              </div>
+              <div class="col-md-8 mx-auto">
+                <form method="POST" action="contactMail.php" name="contactusform">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label for="firstname">First Name</label>
+                        <input id="firstname" type="text" class="form-control" name="CFname" required maxlength="50">
                       </div>
-                  </form>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label for="lastname">Last Name</label>
+                        <input id="lastname" type="text" class="form-control" name="CLname" required maxlength="50">
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label for="email">Email</label>
+                        <input id="email" type="text" class="form-control" name="Cemail" required maxlength="80">
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input id="subject" type="text" class="form-control" name="Csubject" required maxlength="50">
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" name="Cmessage" required maxlength="1000"></textarea>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 text-center">
+                      <button type="submit" class="btn btn-template-outlined" value="Csubmit"><i class="fa fa-envelope-o"></i> Send message</button>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
           </section>
-            <section class="bar">
-                <div class="row">
-                    <div class="col-md-10 mx-auto">
-                        <div class="row">
-                        <?php
-                        if ($_SERVER['QUERY_STRING'] !== ''){
-                            $Squery = $_GET['searchtxt'];
-                            $SearchSQL = "SELECT ItemID, ItemName, Seller, Description FROM items WHERE (ItemName LIKE '%".$Squery."%') OR (Seller LIKE '%".$Squery."%') OR (Description LIKE '%".$Squery."%')";
-                            $RawSearchResults = mysqli_query($sConn, $SearchSQL);
-                            if(mysqli_num_rows($RawSearchResults) > 0){
-                                while($SearchResults = mysqli_fetch_assoc($RawSearchResults)){
-                                    echo '<div class="col-md-9">';
-                                    echo '<h3 class="h5"><a href="listing.php?id=';
-                                    echo $SearchResults['ItemID'];
-                                    echo '">';
-                                    echo $SearchResults['ItemName'];
-                                    echo '</a></h3>';
-                                    echo '</div>';
-                                    echo '<div class="col-md-3 mx-auto"><h3 class="h5">';
-                                    echo 'By:   ';
-                                    echo '<a href="profile.php?username=';
-                                    echo $SearchResults['Seller'];
-                                    echo '">    ';
-                                    echo $SearchResults['Seller'];
-                                    echo '</a>';
-                                    echo '</h3></div>';
-                                }
-                            }
-                            else {
-                                echo '<h3>No Results</h3>';
-                            }
-                        }
-                        ?>
-                            </div>
-                    </div>
-                </div>
-            </section>
         </div>
-      </div>
-<?php include ("../headers/footer.inc.php"); ?>
+        <?php
+        include ('../headers/footer.inc.php');
+        ?>
     </div>
     <!-- Javascript files-->
     <script src="../vendor/jquery/jquery.min.js"></script>
