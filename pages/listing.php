@@ -83,7 +83,7 @@
                               echo'<p class=price>$'.$row['Price'].'</p>';
                               echo'<p class=text-center>Item Condition : '.$row['itemCond'].'</p>';
                               echo'<p class=text-center>List Date : '.$row['ListDate'].'</p>';
-                              echo'<p class=text-center>Seller : '.$row['Seller'].'</p>';
+                              echo'<p class=text-center>Seller : <a href="profile.php?username='.$row['Seller'].'">'.$row['Seller'].'</a></p>';
                               echo'<p class=text-center>Location : '.$row['TradingLocation'].'</p>';
                               define('Seller',$row['Seller']);
                             }
@@ -112,23 +112,17 @@
               <div class="row">
                 <div class="col-lg-6 col-md-6">
                   <div class="box text-uppercase mt-0 mb-small">
-                    <h3>Other Products from this Seller.</h3>
-                      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Show all.
-                      </button>
+                    <h3>Other Products from this Seller</h3>
                   </div>
                 </div>
               </div>
               <div class="row">
+                   <ul class="owl-carousel testimonials list-unstyled equal-height">
                 <?php
-                $counter = 0;
                 $othsql="SELECT ItemID,itemPicture,ItemName,Price FROM items where Sold = 0 AND Active= 1 AND Seller ='".Seller."' AND ItemID !=".id;
                 if($othresult= mysqli_query($connection,$othsql)){
                     while ($row = mysqli_fetch_assoc($othresult)) {
-                        if ($counter > 4){
-                            echo '<div class="collapse" id="collapseExample">' ;
-                        }
-                        echo '<div class="col-lg-3 col-md-6">';
+                        echo '<li class="item">';
                         echo '<div class=product>';
                         echo '<div class=image><a href="listing.php?id='.$row['ItemID'].'">';
                         if ($row['itemPicture'] == NULL) {
@@ -142,18 +136,15 @@
                               echo '</a></div>';
                         echo '<div class=text>';
                         echo '<h3 class=h5><a href="listing.php?id='.$row['ItemID'].'">'.$row['ItemName'].'</a></h3>';
-                        echo '<p class=price>'.$row['Price'].'</p>';
+                        echo '<p class=price>$'.$row['Price'].'</p>';
                         echo '</div>';
                         echo '</div>';
-                        echo '</div>';
-                        $counter ++;
+                        echo '</li>';
                         
-                    }
-                    if ($counter >4){
-                        echo'</div>';
                     }
                 }
                 ?>
+                </ul>
               </div>
             </div>
           </div>
