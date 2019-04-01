@@ -6,7 +6,6 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Edit Profile</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -87,6 +86,7 @@
                 <div class="heading">
                   <h3 class="text-uppercase">Personal details</h3>
                 </div>
+                <?php if($successfulUpdate == true){echo '<div role="alert" class="alert alert-success">Successfully Updated..</div>';} ?>
                 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post" enctype="multipart/form-data">
                     <div class="row">
                     <div class="col-md-6">
