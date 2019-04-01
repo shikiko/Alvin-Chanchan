@@ -3,6 +3,10 @@
   require_once("../private/config.php");
   require_once("../php_scripts/profile_view.php");
   include("../headers/header.inc.php");
+    $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+    if (mysqli_connect_errno()) {
+        die(mysqli_connect_errno());
+    }
 ?>
 <html>
   <head>
@@ -80,20 +84,42 @@
             </div>
           </section>
         </div>
+        <!--Get SellerID-->
         <section class="bar bg-gray">
           <div class="container">
             <div class="row">
               <div class="col-md-12">
-                <div class="heading text-center">
-                  <h2>Clients Han is taking care of</h2>
+                <div class="heading text-center"><?php
+                echo "<h2>".$_GET['username']."'s Listings";
+                ?>
                 </div>
-                <ul class="list-unstyled owl-carousel customers no-mb">
-                  <li class="item"><img src="img/customer-1.png" alt="" class="img-fluid"></li>
-                  <li class="item"><img src="img/customer-2.png" alt="" class="img-fluid"></li>
-                  <li class="item"><img src="img/customer-3.png" alt="" class="img-fluid"></li>
-                  <li class="item"><img src="img/customer-4.png" alt="" class="img-fluid"></li>
-                  <li class="item"><img src="img/customer-5.png" alt="" class="img-fluid"></li>
-                  <li class="item"><img src="img/customer-6.png" alt="" class="img-fluid"></li>
+                <ul class="owl-carousel testimonials list-unstyled equal-height">
+                <?php
+                $othsql="SELECT ItemID,itemPicture,ItemName,Price FROM items where Sold = 0 AND Active= 1 AND Seller ='".$_GET['username']."'";
+                if($othresult= mysqli_query($connection,$othsql)){
+                    while ($row = mysqli_fetch_assoc($othresult)) {
+                        echo '<li class="item">';
+                        echo '<div class=product>';
+                        echo '<div class=image><a href="listing.php?id='.$row['ItemID'].'">';
+                        if ($row['itemPicture'] == NULL) {
+                            echo '<img src="../img/NoImg.png" alt="No Image Available" class="img-fluid image1">';
+                    }
+                        else {
+                            echo '<img class="img-fluid image1"  src="data:image/jpg;base64,' . base64_encode($row['itemPicture']) . '" alt="';
+                            echo $row['ItemName'];
+                            echo '" >';
+                    }
+                              echo '</a></div>';
+                        echo '<div class=text>';
+                        echo '<h3 class=h5><a href="listing.php?id='.$row['ItemID'].'">'.$row['ItemName'].'</a></h3>';
+                        echo '<p class=price>$'.$row['Price'].'</p>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</li>';
+                        
+                    }
+                }
+                ?>
                 </ul>
               </div>
             </div>
