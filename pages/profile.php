@@ -8,7 +8,6 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Universal - All In 1 Template</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="all,follow">
@@ -58,19 +57,23 @@
             </div>
             <div class="row">
             <div class="col-md-4"><img alt="" src="../img/profilepictures/082612086538.jpg" class="img-fluid rounded-circle"></div>
-              <div class="col-md-8">
+              <div class="col-md-5">
                 <div class="heading">
-                  <h3>Han's Details</h3>
-                </div>
+                  <?php
+                  echo '<h3>';
+                  echo $_GET['username'];
+                  echo "'s details</h3>";
+                  ?>
+                </div>  
                 <ul class="ul-icons list-unstyled">
                   <li>
-                    <div class="icon-filled"><i class="fa fa-phone fix"></i></div><span class="fixword">Phone here</span>
+                    <div>Email: <?php echo $email ?></div>
                   </li>
                   <li>
-                    <div class="icon-filled"><i class="fa fa-envelope fix"></i></div>Email here
+                  <div>Phone: <?php echo $phone ?></div>
                   </li>
                   <li>
-                    <div class="icon-filled"><i class="fa fa-user fix"></i></div>Gender
+                    <div>Gender: <?php if(!isset($gender)){echo "Unspecified";}else{echo $gender;} ?></div>
                   </li>
                 </ul>
               </div>
