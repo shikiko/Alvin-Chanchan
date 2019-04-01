@@ -5,7 +5,6 @@ if(!isset($_SESSION["username"])) {
 require_once("../private/config.php"); 
 require_once("../php_scripts/login_modal.php");
 require_once("../php_scripts/functions.php");
-set_error_handler('error_found');
 
 
 ?>
@@ -34,7 +33,7 @@ set_error_handler('error_found');
                         <span class="d-none d-md-inline-block">Sign Up</span></a></div>';
                }else{
                   //Session has started (User Logged in)
-                  echo '<div class="login"><a href="profilepage.php" class="login-btn">
+                  echo '<div class="login"><a href="editprofile.php" class="login-btn">
                   <i class="fa fa-user"></i><span class="d-none d-md-inline-block">My Profile</span></a>
                   <a href="Inbox.php" class="signup-btn"><i class="fa fa-inbox"></i>
                   <span class="d-none d-md-inline-block">Messages</span></a>
@@ -84,9 +83,9 @@ set_error_handler('error_found');
          <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggler btn-template-outlined"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
          <div id="navigation" class="navbar-collapse collapse">
             <ul class="nav navbar-nav ml-auto">
-               <li class="nav-item dropdown <?php if($currentPage=='home'){echo 'active';}?>"><a href="main.php">Home</b></a>
+               <li class="nav-item dropdown <?php if($currentPage=='home'){echo 'active';}?>"><a href="main.php?category=All">Home</b></a>
                </li>
-               <li class="nav-item dropdown <?php if($currentPage=='browse'){echo 'active';}?>"><a href="browse.php?category=All">Browse</b></a>
+               <li class="nav-item dropdown <?php if($currentPage=='search'){echo 'active';}?>"><a href="search.php">Search</b></a>
                </li>
                <li class="nav-item dropdown menu-large">
                   <a href="#" data-toggle="dropdown" class="dropdown-toggle">Portfolio <b class="caret"></b></a>
