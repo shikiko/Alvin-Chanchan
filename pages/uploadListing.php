@@ -1,6 +1,6 @@
 <?php 
 $currentPage = 'New Listing';
-$sellerid = '555';
+$sellerid = 'andrew';
 require_once("../private/config.php");
 require_once("../php_scripts/ins_listing.php");
 ?>
@@ -57,26 +57,26 @@ require_once("../php_scripts/ins_listing.php");
               <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
                 <input type='hidden' name='action' value='upload'/>
                 <div class="form-group">
-                  <label for="name-login">Item Name</label>
+                  <label >Item Name</label>
                   <span class="error">* <?php echo $itemnameErr;?></span>
-                  <input id="name-login" type="text" class="form-control"  name="itemname">
+                  <input id="itemname" type="text" class="form-control"  name="itemname">
                 </div>
                 <div class="form-group">
-                  <label for="email-login">Item Condition</label>
-                  <input id="email-login" type="text" class="form-control" name="itemcond">
+                  <label >Item Condition</label>
+                  <input id="itemcond" type="text" class="form-control" name="itemcond">
                 </div>
                 <div class="form-group">
-                  <label for="password-login">Price</label>
+                  <label >Price</label>
                   <span class="error">* <?php echo $itempriceErr;?></span>
-                  <input id="password-login" type="number" class="form-control" name="itemprice">
+                  <input id="itemprice" type="number" class="form-control" name="itemprice">
                 </div>
                 <div class="form-group">
-                  <label for="password-login">Trading Location</label>
+                  <label >Trading Location</label>
                   <span class="error">* <?php echo $tradelocErr;?></span>
-                  <input id="password-login" type="text" class="form-control" name="tradeloc">
+                  <input id="tradeloc" type="text" class="form-control" name="tradeloc">
                 </div>
                 <div class="form-group">
-                  <label for="password-login">Category</label>
+                  <label >Category</label>
                   <select id="category" class="form-control" name="itemcat">
                       <option value='Computers and IT'>Computers and IT</option>
                       <option value='Furniture'>Furniture</option>
@@ -86,12 +86,12 @@ require_once("../php_scripts/ins_listing.php");
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="password-login">Description</label>
+                  <label >Description</label>
                   <textarea id="itemdesc" class="form-control" style="resize: none;"name="itemdesc"></textarea>
                 </div>
                 <div class="form-group">
-                  <label for="password-login">Picture</label>
-                  <input id="pic-upload" type="file" class="form-control-file" accept="image/*"name="itempic">
+                  <label >Picture</label>
+                  <input id="itempic" type="file" class="form-control-file" accept="image/*"name="itempic">
                 </div>
                   <input type="hidden" name="sellerid" value="<?php $sellerid ?>"
                 <span class="error">* <?php if(empty($createErr)){echo "required field";}else{echo $createErr;}?></span>   
