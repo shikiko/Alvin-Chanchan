@@ -6,10 +6,4 @@ function trim_input($data) {
 	$data = htmlspecialchars($data);
 	return $data;
 }
-
-function error_found(){
-  exit(header("Location: 404.php"));
-}
-
-
 ?>
