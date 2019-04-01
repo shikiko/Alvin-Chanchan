@@ -91,7 +91,7 @@ require_once("../php_scripts/ins_listing.php");
                 </div>
                 <div class="form-group">
                   <label for="password-login">Picture</label>
-                  <input id="pic-upload" type="file" class="form-control-file" name="itempic">
+                  <input id="pic-upload" type="file" class="form-control-file" accept="image/*"name="itempic">
                 </div>
                   <input type="hidden" name="sellerid" value="<?php $sellerid ?>"
                 <span class="error">* <?php if(empty($createErr)){echo "required field";}else{echo $createErr;}?></span>   
