@@ -8,7 +8,7 @@ function trim_input($data) {
 }
 
 function error_found(){
-  header("Location: 404.php");
+  exit(header("Location: 404.php"));
 }
 
 

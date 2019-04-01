@@ -5,7 +5,6 @@ if(!isset($_SESSION["username"])) {
 require_once("../private/config.php"); 
 require_once("../php_scripts/login_modal.php");
 require_once("../php_scripts/functions.php");
-set_error_handler('error_found');
 
 
 ?>
