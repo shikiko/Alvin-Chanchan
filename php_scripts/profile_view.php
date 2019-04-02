@@ -30,6 +30,6 @@
 			}
 	    //Close connection
 	      $conn->close();
-	    }//end of insert
+	    }//end of select
     }
 ?>

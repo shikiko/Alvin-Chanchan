@@ -38,30 +38,35 @@ if (!empty($_POST["upload"])){
   } else {
     $tradeloc = trim_input($_POST["tradeloc"]);
   }
-  if($check == True){
-      $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-      if ($conn->connect_error) {
-        echo '<script>console.log("';
-        echo 'connection error';
-        echo '")</script>';
-        die("Connection failed: " . $conn->connect_error);
-      }else{
-        $sql = "INSERT INTO items (itemName,Description, Price,Category,itemCond,TradingLocation,itemPicture,Active,Sold,ListDate,Seller)
-        VALUES ('$itemname','$itemdesc', $itemprice, '$itemcat', '$itemcond','$tradeloc','$imagename',1,0,'$listdate','$seller')";#FIX THI  S
-        if ($conn->query($sql) === TRUE) {
-          echo '<script>console.log("[DEBUG]New record created successfully")</script>';
-          $successfulUpload = true;
-        } else {
-          $error = "Error: " . $sql . "<br>" . $conn->error;
-          echo '<script>console.log("[DEBUG]Password:';
-          echo $error;
-          echo '")</script>';  
-          
-        }
-        $conn->close();
-    }
-    }
-    }
+
+  if(CheckVerified($seller)){
+    if($check == True){
+        $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+        if ($conn->connect_error) {
+          echo '<script>console.log("';
+          echo 'connection error';
+          echo '")</script>';
+          die("Connection failed: " . $conn->connect_error);
+        }else{
+          $sql = "INSERT INTO items (itemName,Description, Price,Category,itemCond,TradingLocation,itemPicture,Active,Sold,ListDate,Seller)
+          VALUES ('$itemname','$itemdesc', $itemprice, '$itemcat', '$itemcond','$tradeloc','$imagename',1,0,'$listdate','$seller')";#FIX THI  S
+          if ($conn->query($sql) === TRUE) {
+            echo '<script>console.log("[DEBUG]New record created successfully")</script>';
+            $successfulUpload = true;
+          } else {
+            $error = "Error: " . $sql . "<br>" . $conn->error;
+            echo '<script>console.log("[DEBUG]Password:';
+            echo $error;
+            echo '")</script>';  
+            
+          }
+          $conn->close();
+        }//else $conn->connect_error
+      }//$check = true
+  }else{
+    echo "You are not verified, Please verify first";
+  }//if checkVerified
+  }
 }
 
 function UploadImage($image){

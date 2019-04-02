@@ -6,7 +6,7 @@
     $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
     if (mysqli_connect_errno()) {
         die(mysqli_connect_errno());
-    }
+    } 
 ?>
 <html>
   <head>
@@ -60,7 +60,16 @@
               </div>
             </div>
             <div class="row">
-            <div class="col-md-4"><img alt="" src="../img/profilepictures/082612086538.jpg" class="img-fluid rounded-circle"></div>
+            <div class="col-md-2"><img alt="profilepic"
+              <?php
+              if($profilepic == ""){
+                $profilepic = '../img/NoImg.png';
+              }
+              echo 'src="';
+              echo "$profilepic";
+              echo '"';
+             ?>
+            class="img-fluid rounded-circle"></div>
               <div class="col-md-5">
                 <div class="heading">
                   <?php
@@ -74,7 +83,7 @@
                     <div>Email: <?php echo $email ?></div>
                   </li>
                   <li>
-                  <div>Phone: <?php echo $phone ?></div>
+                  <div>Telephone: <?php if(!isset($phone)){echo "Unspecified";}else{echo $phone;}?></div>
                   </li>
                   <li>
                     <div>Gender: <?php if(!isset($gender)){echo "Unspecified";}else{echo $gender;} ?></div>
