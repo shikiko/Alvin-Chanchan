@@ -148,8 +148,8 @@ function UploadImage($image){
 	    $uploadOk = 0;
 	}
 	// Check file size
-	if ($_FILES["fileToUpload"]["size"] > 500000) {
-	    $imageErr = "Sorry, your file is too large.";
+	if ($_FILES["fileToUpload"]["size"] > 9000) {
+	    $imageErr = "Sorry, your file is too large. Please upload images up to 9MB";
 	    $uploadOk = 0;
 	}
 	// Allow certain file formats
