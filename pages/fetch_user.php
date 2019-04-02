@@ -6,6 +6,28 @@ if(!isset($_SESSION["username"])){
 //fetch_user.php
 require_once("../private/config.php");
 
+function count_unseen_message($from_user_id, $to_user_id)
+{
+$connect = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+ $query = "
+ SELECT * FROM `system` 
+ WHERE `From` = '$from_user_id' 
+ AND `To` = '$to_user_id' 
+ AND `status` = '1'";
+
+ $statement = $connect->prepare($query);
+ $statement->execute();
+ $result = $statement->get_result()->fetch_all(MYSQLI_ASSOC);
+ $count = count($result);
+
+ $output = '';
+ if($count > 0)
+ {
+  $output = '<span class="label label-success">'.$count.'</span>';
+ }
+ return $output;
+}
+
 function fetch_user_last_activity($Username, $connect)
 {
  $query = "
@@ -61,7 +83,7 @@ foreach($result as $row)
  }
  $output .= '
  <tr>
-  <td>'.$row['Username'].'</td>
+  <td>'.$row['Username'].' '.count_unseen_message($row['Username'], $_SESSION['username']).'</td>
   <td>'.$status.'</td>
   <td><button type="button" class="btn btn-info btn-xs start_chat" data-touserid="'.$row['Username'].'" data-tousername="'.$row['Username'].'">Start Chat</button></td>
  </tr>
