@@ -1,6 +1,6 @@
 <?php 
 $currentPage = 'New Listing';
-$sellerid = 'andrew';
+include("../headers/header.inc.php");
 require_once("../private/config.php");
 require_once("../php_scripts/ins_listing.php");
 ?>
@@ -43,18 +43,18 @@ require_once("../php_scripts/ins_listing.php");
 </head>
 <body>
   <div id="all">
-    <?php include("../headers/header.inc.php"); ?>
     <div id="content">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
             <div class="box">
+                <h1 class="text-upper">Welcome, <?php echo $_SESSION["username"]; ?></h1>
               <h2 class="text-uppercase">New Listing</h2>
               <p class="lead">Ready to Sell?</p>
               <p>Fill in a few important details and help describe your product so that Users know what they're getting!</p>
               <hr>
-              <?php #if($successfulRegister == true){echo '<div role="alert" class="alert alert-success">Your account has been made, Please verify it by clicking the activation link that has been send to your email.</div>';} ?>
-              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
+              <?php if($successfulUpload == true){echo '<div role="alert" class="alert alert-success">Your listing has been created.</div>';} ?>
+              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post"enctype="multipart/form-data" >
                 <input type='hidden' name='action' value='upload'/>
                 <div class="form-group">
                   <label >Item Name</label>
@@ -68,7 +68,7 @@ require_once("../php_scripts/ins_listing.php");
                 <div class="form-group">
                   <label >Price</label>
                   <span class="error">* <?php echo $itempriceErr;?></span>
-                  <input id="itemprice" type="number" class="form-control" name="itemprice">
+                  <input id="itemprice" type="number" step="0.01" class="form-control" name="itemprice">
                 </div>
                 <div class="form-group">
                   <label >Trading Location</label>
@@ -90,10 +90,11 @@ require_once("../php_scripts/ins_listing.php");
                   <textarea id="itemdesc" class="form-control" style="resize: none;"name="itemdesc"></textarea>
                 </div>
                 <div class="form-group">
-                  <label >Picture</label>
-                  <input id="itempic" type="file" class="form-control-file" accept="image/*"name="itempic">
+                        <label>Item Picture</label>
+                        <span class="error"><?php if(!empty($imageErr)){echo $imageErr;}?></span>
+                        <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*">                    
                 </div>
-                  <input type="hidden" name="sellerid" value="<?php $sellerid ?>"
+                  <input type="hidden" name="sellerid" value="<?php$sellerid?>">
                 <span class="error">* <?php if(empty($createErr)){echo "required field";}else{echo $createErr;}?></span>   
                 <div class="text-center">
                   <button type="submit" class="btn btn-template-outlined" name="upload" value='upload'><i class="fa fa-user-md"></i> Create</button>
@@ -104,6 +105,7 @@ require_once("../php_scripts/ins_listing.php");
         </div>
       </div>
     </div>
+  </div>
     <?php include("../headers/footer.inc.php"); ?>
     <!-- Javascript files-->
     <script src="../vendor/jquery/jquery.min.js"></script>

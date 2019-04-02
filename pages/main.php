@@ -87,7 +87,7 @@ if ($_SERVER['QUERY_STRING'] == ''){
                         echo '<img src="../img/NoImg.png" alt="No Image Available" class="img-fluid image1">';
                     }
                     else {
-                        echo '<img src="data:image/jpg;base64,' . base64_encode($row['itemPicture']) . '" alt="';
+                        echo '<img src="'.$row['itemPicture'].'" alt="';
                         echo $row['ItemName'];
                         echo '" class="img-fluid image1">';
                     }
@@ -117,7 +117,7 @@ if ($_SERVER['QUERY_STRING'] == ''){
                         echo '<img src="../img/NoImg.png" alt="No Image Available" class="img-fluid image1">';
                     }
                     else {
-                        echo '<img src="data:image/jpg;base64,' . base64_encode($selectiveRow['itemPicture']) . '" alt="';
+                        echo '<img src="'.$row['itemPicture'].'" alt="';
                         echo $selectiveRow['ItemName'];
                         echo '" class="img-fluid image1">';
                     }
