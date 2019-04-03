@@ -31,7 +31,7 @@ $connect = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
   }
   else
   {
-   $user_name = '<b class="text-danger">'.get_user_name($row['To']).'</b>';
+   $user_name = '<b class="text-danger">'.get_user_name($row['From']).'</b>';
   }
   $output .= '
   <li style="border-bottom:1px dotted #ccc">
