@@ -105,7 +105,7 @@
                         
                         ?>
                       <?php
-                        if(!empty($_SESSION)) {
+                        if((!empty($_SESSION)) || ($Seller != $_SESSION["username"])) {
                         ?>
                       <p class="text-center" id="user_details">
                         <div id="user_model_details"></div>

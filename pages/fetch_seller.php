@@ -7,8 +7,11 @@ if(!isset($_SESSION["username"])){
 require_once("../php_scripts/functions.php");
 require_once("../private/config.php");
 $Seller = $_SESSION['seller'];
+$check = ($_SESSION['username']!=$Seller);
+
 if (!empty($_SESSION['username'])){
     $Username = $_SESSION['username'];
+    if ($_SESSION['username']!=$Seller){
     if(CheckVerified($Username)){
     $query = "
     SELECT * FROM user 
@@ -41,5 +44,6 @@ if (!empty($_SESSION['username'])){
     }
 }else{
     $Username = '';
+}
 }
 ?>
