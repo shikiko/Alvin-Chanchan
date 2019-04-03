@@ -92,11 +92,14 @@
                               $Seller = $row['Seller'];
                               $_SESSION['seller'] = $Seller;
                             }
-                            echo '<div class="row"><div class="col-md-4"></div><div class="col-md-4 mx-auto">';
-                            echo '<a href=""><img src="../img/share-fb.svg" class="img-fluid" width=36 height=36></a>';
-                            echo '<a href=""><img src="../img/share-twitter.svg" class="img-fluid" width=36 height=36></a>';
-                            echo '<a href=""><img src="../img/share-link.svg" class="img-fluid" width=36 height=36></a>';
-                            echo '</div><div class="col-md-3"></div></div>';
+                            echo '<section class="bg-gray"><div class="row"><div class="col-md-3"></div><div class="col-md-6 mx-auto"><h3 style=text-align:center>Share this listing</h3></div><div class="col-md-3"></div></div>';
+                            echo '<div class="row"><div class="col-md-4 col-sm-3"></div><div class="col-md-4 col-sm-4 mx-auto">';
+                            echo '<a href="https://www.facebook.com/sharer/sharer.php?u=http://ict1004.ddns.net/dco/Group04/Project2/listing.php?id='.id;
+                            echo '" target="_blank"><img src="../img/share-fb.svg" class="img-fluid" width=36 height=36></a>';
+                            echo '<a href="https://twitter.com/intent/tweet?url=http://ict1004.ddns.net/dco/Group04/Project2/listing.php?id='.id;
+                            echo '" target="_blank"><img src="../img/share-twitter.svg" class="img-fluid" width=36 height=36></a>';
+                            echo '<button type="button" class="btn btn-sm btn-link p-0"><img src="../img/share-link.svg" class="img-fluid" width=36 height=36></button>';
+                            echo '</div><div class="col-md-3 col-sm-3"></div></div></section>';
                         }
                         ?>
                       <p class="text-center" id="user_details">
