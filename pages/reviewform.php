@@ -1,14 +1,18 @@
 <?php 
   $currentPage = 'Submit Review';
-  include("../headers/header.inc.php");
   require_once("../private/config.php");
-  require_once("../php_scripts/ins_review.php");
   //if method is post then
   if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $retrievedtarget = $_POST["targetuser"];
   }
+  else{
+      header("Location: ../error/401.php");
+  }
 ?>
 <html>
+    <?php
+    include("../headers/header.inc.php");
+    require_once("../php_scripts/ins_review.php");?>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
