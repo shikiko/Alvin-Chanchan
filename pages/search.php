@@ -45,9 +45,12 @@ $currentPage = 'Search';
         include ("../headers/header.inc.php");
         require_once ("../private/config.php");
         
-        $sConn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-        if (mysqli_connect_errno()) {
-                die(mysqli_connect_errno());
+        // Create connection
+	    $sConn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+	    // Check connection
+	    if (!$sConn) {
+	      header("Location: ../error/500.php");
+	      die("Connection failed: " . $sConn->connect_error);
             }
         ?>
       <div id="content">
