@@ -103,9 +103,15 @@
                             echo '</div><div class="col-md-3 col-sm-3"></div></div></section>';
                         }
                         ?>
+                      <?php
+                        if(!empty($_SESSION)) {
+                        ?>
                       <p class="text-center" id="user_details">
                         <div id="user_model_details"></div>
                       </p>
+                      <?php
+                            }
+                       ?>
                     </form>
                   </div>
                 </div>
