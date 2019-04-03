@@ -78,17 +78,17 @@ $currentPage = 'Search';
           </section>
             <section class="bar">
                 <div class="row">
-                    <div class="col-md-10 mx-auto">
+                    <div class="col-md-9 mx-auto">
                         <div class="row">
                         <?php
                         if ($_SERVER['QUERY_STRING'] !== ''){
                             $Squery = $_GET['searchtxt'];
-                            $SearchSQL = "SELECT ItemID, ItemName, Seller, Description FROM items WHERE (ItemName LIKE '%".$Squery."%') OR (Seller LIKE '%".$Squery."%') OR (Description LIKE '%".$Squery."%')";
+                            $SearchSQL = "SELECT ItemID, ItemName, Seller, Description, Active, Sold FROM items WHERE Active = 1 AND Sold = 0 AND ((ItemName LIKE '%".$Squery."%') OR (Seller LIKE '%".$Squery."%') OR (Description LIKE '%".$Squery."%'))";
                             $RawSearchResults = mysqli_query($sConn, $SearchSQL);
                             if(mysqli_num_rows($RawSearchResults) > 0){
                                 while($SearchResults = mysqli_fetch_assoc($RawSearchResults)){
                                     echo '<div class="col-md-9">';
-                                    echo '<h3 class="h5"><a href="listing.php?id=';
+                                    echo '<h3 class="h5"><a href="../pages/listing.php?id=';
                                     echo $SearchResults['ItemID'];
                                     echo '">';
                                     echo $SearchResults['ItemName'];
@@ -96,7 +96,7 @@ $currentPage = 'Search';
                                     echo '</div>';
                                     echo '<div class="col-md-3 mx-auto"><h3 class="h5">';
                                     echo 'By:   ';
-                                    echo '<a href="profile.php?username=';
+                                    echo '<a href="../pages/profile.php?username=';
                                     echo $SearchResults['Seller'];
                                     echo '">    ';
                                     echo $SearchResults['Seller'];
@@ -105,7 +105,22 @@ $currentPage = 'Search';
                                 }
                             }
                             else {
-                                echo '<h3>No Results</h3>';
+                                $STSQL = "SELECT Username FROM user WHERE Username = '".$Squery."'";
+                                $UserSearch = mysqli_query($sConn, $STSQL);
+                                if(mysqli_num_rows($UserSearch) > 0){
+                                    echo '<div class="col-md-5">';
+                                    echo '<h2>Users found:</h2><br>';
+                                    while($UserSearchResults = mysqli_fetch_assoc($UserSearch)){
+                                        echo '<h3 class="h5"><a href="../pages/profile.php?username=';
+                                        echo $UserSearchResults['Username'];
+                                        echo '">';
+                                        echo $UserSearchResults['Username'];
+                                        echo '</a></h3>';
+                                    }
+                                }
+                                else{
+                                    echo '<h3>No Results</h3>';
+                                }
                             }
                         }
                         ?>

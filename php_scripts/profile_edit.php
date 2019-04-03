@@ -57,6 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	  	}else{
 	  		$phone ='NULL';
 	  	}
+	  	if(!empty($_POST["gender"])){
+	  		$gender = trim_input($_POST["gender"]);
+	  		UploadGender($gender);
+	  	}
 	  	//Checks if upload image is empty.hi
 		if (!empty(basename($_FILES["fileToUpload"]["name"]))){
 			$image = basename($_FILES["fileToUpload"]["name"]);
@@ -227,5 +231,31 @@ function UploadTelephone($phone){
     //Close connection
 	}//end of else
 }
+
+function UploadGender($gender){
+	$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+	$username = $_SESSION["username"];
+	//Checks if connections exists
+	if ($conn->connect_error) {
+      echo "connection error";
+      die("Connection failed: " . $conn->connect_error);
+      return false;
+    }else{
+		$sql = "Update user set Gender ='$gender' where username='$username'";
+		//checks if record is successful (true = successful)
+		if ($conn->query($sql) === TRUE) {
+		    //echo "Record updated successfully";
+		    $conn->close();
+		    return true;
+		} else {
+		    //echo "Error updating record: " . $conn->error;
+		    $conn->close();
+		    return false;
+		}
+    //Close connection
+	}//end of else
+}
+
+
 
 ?>

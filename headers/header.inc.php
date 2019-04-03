@@ -83,11 +83,11 @@ require_once("../php_scripts/functions.php");
 <header class="nav-holder make-sticky">
    <div id="navbar" role="navigation" class="navbar navbar-expand-lg">
       <div class="container">
-         <a href="../pages/main.php" class="navbar-brand home"><img src="../img/Logo.png" alt="Fastrade logo" class="d-none d-md-inline-block"><img src="../img/logo-small.png" alt="Fasttrade logo" class="d-inline-block d-md-none"><span class="sr-only">FastTrade</span></a>
+         <a href="../pages/index.php" class="navbar-brand home"><img src="../img/Logo.png" alt="Fastrade logo" class="d-none d-md-inline-block"><img src="../img/logo-small.png" alt="Fasttrade logo" class="d-inline-block d-md-none"><span class="sr-only">FastTrade</span></a>
          <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggler btn-template-outlined"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
          <div id="navigation" class="navbar-collapse collapse">
             <ul class="nav navbar-nav ml-auto">
-               <li class="nav-item dropdown <?php if($currentPage=='Home'){echo 'active';}?>"><a href="../pages/main.php?category=All">Home</b></a>
+               <li class="nav-item dropdown <?php if($currentPage=='Home'){echo 'active';}?>"><a href="../pages/index.php?category=All">Home</b></a>
                </li>
                <li class="nav-item dropdown <?php if($currentPage=='Search'){echo 'active';}?>"><a href="../pages/search.php">Search</b></a>
                </li>
@@ -201,7 +201,7 @@ require_once("../php_scripts/functions.php");
          </div>
          <div class="col-md-5">
             <ul class="breadcrumb d-flex justify-content-end">
-               <li class="breadcrumb-item"><a href="main.php">Home</a></li>
+               <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                <?php if($currentPage != 'Home'){
                   echo '<li class="breadcrumb-item active">';
                   echo $currentPage;

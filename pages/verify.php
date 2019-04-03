@@ -22,7 +22,7 @@ if(isset($_GET['hash']) && !empty($_GET['hash'])){
     }//end of update
 }
 
-header('Refresh: 5; main.php');
+header('Refresh: 5; index.php');
 ?>
 <!DOCTYPE html>
 <html>
