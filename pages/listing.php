@@ -102,6 +102,7 @@
                             echo '<button type="button" class="btn btn-sm btn-link p-0"><img src="../img/share-link.svg" class="img-fluid" width=36 height=36></button>';
                             echo '</div><div class="col-md-3 col-sm-3"></div></div></section>';
                         }
+                        
                         ?>
                       <?php
                         if(!empty($_SESSION)) {
@@ -113,8 +114,24 @@
                             }
                        ?>
                     </form>
+                       <?php if($Seller === $_SESSION["username"]){
+                echo '<div class="col-lg-12">
+                  <form class=text-center action="editListing.php" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" name="targetitem" value='.id.' />
+                    <input type="hidden" name="itemcond" value=""/>
+                    <input type="hidden" name="itemcat" value=""/>
+                    <input type="hidden" name="itemdesc" value=""/>
+                    <input type="hidden" name="itemprice" value=""/>
+                    <div class="form-group">
+                        <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*">                    
+                    </div>
+                    <button type="submit" class="btn btn-template-outlined" name="upload" value="upload"><i class="fa fa-user-md"></i> Edit Listing</button>
+                </form>   
+            </div>';
+              }?>
                   </div>
                 </div>
+                  
               </div>
               <div id="details" class="box mb-4 mt-4">
                 <?php
