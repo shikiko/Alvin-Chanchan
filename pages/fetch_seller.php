@@ -6,7 +6,8 @@ if(!isset($_SESSION["username"])){
 //fetch_seller.php
 require_once("../private/config.php");
 $Seller = $_SESSION['seller'];
-$Username = $_SESSION['username'];
+if (!empty($_SESSION['username'])){
+    $Username = $_SESSION['username'];
 $query = "
 SELECT * FROM user 
 WHERE Username = '".$Seller."' 
@@ -35,5 +36,7 @@ foreach($result as $row)
 
 $output .= '</table>';
 echo $output;
-
+}else{
+    $Username = '';
+}
 ?>
