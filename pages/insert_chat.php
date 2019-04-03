@@ -73,7 +73,11 @@ function get_user_name($user_id)
 $to = $_POST['to_user_id'];
 $msg = $_POST['chat_message'];
 $status = 1;
+if($_POST['chat_message'] == NULL){
+    echo "Please type something! Try again!";
+}
 
+else if($_POST['chat_message'] != NULL){
 $data = array(
  ':to'  => $to,
  ':from'  => $_SESSION['username'],
@@ -88,5 +92,6 @@ $statement = $connect->prepare($query);
 $statement->execute();
 
 echo fetch_user_chat_history($Username, $_POST['to_user_id']);
+}
 ?>
 
