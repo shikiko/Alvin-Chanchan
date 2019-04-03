@@ -49,7 +49,7 @@
           <div class="box">
             <h3>We are sorry for this unexpected error.</h3>
             <h4 class="text-muted">Error 500 - Internal Server Error</h4>
-            <p class="buttons"><a href="main.php" class="btn btn-template-outlined"><i class="fa fa-home"></i> Go to Homepage</a></p>
+            <p class="buttons"><a href="../pages/main.php" class="btn btn-template-outlined"><i class="fa fa-home"></i> Go to Homepage</a></p>
           </div>
         </div>
       </div>
