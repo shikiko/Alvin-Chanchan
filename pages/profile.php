@@ -3,10 +3,10 @@
   require_once("../private/config.php");
   require_once("../php_scripts/profile_view.php");
   include("../headers/header.inc.php");
-    $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-      if (!$connection) {
+    $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+      if (!$conn) {
         header("Location: ../error/500.php");
-        die("Connection failed: " . $connection->connect_error);
+        die("Connection failed: " . $conn->connect_error);
       }
 ?>
 <html>
@@ -118,11 +118,14 @@
                 echo "<h2>".$_GET['username']."'s Listings";
                 ?>
                 </div>
-                <ul class="owl-carousel testimonials list-unstyled equal-height">
                 <?php
                 $othsql="SELECT ItemID,itemPicture,ItemName,Price FROM items where Sold = 0 AND Active= 1 AND Seller ='".$_GET['username']."'";
-                if($othresult= mysqli_query($connection,$othsql)){
-                    while ($row = mysqli_fetch_assoc($othresult)) {
+                if($othresult= mysqli_query($conn,$othsql)){
+                    if(mysqli_num_rows($othresult)== 0){
+                        echo '<h2 class=text-center style="margin:auto;">User has no other listings!</h2>';
+                    }else{
+                        echo '<ul class="owl-carousel testimonials list-unstyled equal-height">';
+                        while ($row = mysqli_fetch_assoc($othresult)) {
                         echo '<li class="item">';
                         echo '<div class=product>';
                         echo '<div class=image><a href="listing.php?id='.$row['ItemID'].'">';
@@ -143,12 +146,54 @@
                         echo '</li>';
                         
                     }
+                        echo '</ul>';
+                    }  
                 }
                 ?>
-                </ul>
               </div>
             </div>
           </div>
+        </section>
+        <section class="bar">
+            <div class="container">
+            <div class="row">
+            <div class="col-md-12">
+                <h1 class=text-center>Comments and Reviews</h1>
+                <form class=text-center action="reviewform.php" method="POST">
+                    <input type="hidden" name="targetuser" value="<?php echo $_GET['username']?>"/>
+                    <input type="hidden" name="rating" value=""/>
+                    <input type="hidden" name="retrievedtarget" value=""/>
+                    <button type="submit" class="btn btn-template-outlined" name="review" value='review'><i class="fa fa-user-md"></i> Submit review</button>
+                </form>   
+            </div>
+            </div>
+            <div class="row">
+            
+                <?php
+                $revsql='SELECT * FROM review where targetuser="'.$_GET['username'].'" ORDER BY revDate DESC';
+                if($revresult= mysqli_query($conn,$revsql)){
+                    if(mysqli_num_rows($revresult)== 0){
+                        echo '<h2 class=text-center style="margin:auto;">User has no other comments or reviews!!</h2>';
+                    }else{
+                        while ($row = mysqli_fetch_assoc($revresult)) {
+                        echo '<div class=col-md-6 id=comment>';
+                        echo '<div class=card>';
+                        echo '<div class=card-body>';
+                        echo '<div class=card-title>Name : '.$row['reviewer'].'</div>';
+                        echo '<div class=card-subtitle> Date : '.$row['revDate'];
+                        echo ' Rating : '.$row['rating'].'<i class="fa fa-star" style="color: #FFD700;"></i></div>';
+                        echo 'Comment : '.$row['comment'];
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                    }  
+                } 
+                ?>
+   
+                
+            </div>
+            </div>
         </section>
       </div>
     <?php include("../headers/footer.inc.php"); ?>
@@ -165,5 +210,6 @@
     <script src="../vendor/bootstrap-select/js/bootstrap-select.min.js"></script>
     <script src="../vendor/jquery.scrollto/jquery.scrollTo.min.js"></script>
     <script src="../js/front.js"></script>
+    <script src="../js/rating.js"></script>
   </body>
 </html>
