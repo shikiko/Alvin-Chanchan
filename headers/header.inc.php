@@ -95,8 +95,20 @@ require_once("../php_scripts/functions.php");
                </li>
                <li class="nav-item dropdown <?php if($currentPage=='Contact Us'){echo 'active';}?>"><a href="../pages/contactus.php">Contact Us</b></a>
                </li>
+               <?php if(isset($_SESSION["username"])){
+                  $username = $_SESSION["username"];
+                  if(CheckAdmin($username)){
+                     echo '<li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown" class="dropdown-toggle">Admin <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li class="dropdown-item"><a href="../pages/manageprofiles.php" class="nav-link">Edit Profiles</a></li>
+                  </ul>
+                </li>';
+                  }
+               };
+               ?>
+
                <!-- ========== FULL WIDTH MEGAMENU ==================-->
-               <li class="nav-item dropdown menu-large">
+               <!-- <li class="nav-item dropdown menu-large">
                   <a href="#" data-toggle="dropdown" data-hover="dropdown" data-delay="200" class="dropdown-toggle">All Pages <b class="caret"></b></a>
                   <ul class="dropdown-menu megamenu">
                      <li>
@@ -186,7 +198,7 @@ require_once("../php_scripts/functions.php");
                         </div>
                      </li>
                   </ul>
-               </li>
+               </li> -->
                <!-- ========== FULL WIDTH MEGAMENU END ==================-->
             </ul>
          </div>

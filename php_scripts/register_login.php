@@ -90,8 +90,8 @@ if (!empty($_POST["register"])){
         die("Connection failed: " . $conn->connect_error);
       }else{
         $hash = md5(rand(0,1000));
-        $sql = "INSERT INTO User (username, email, password,hash)
-        VALUES ('$name', '$email', '$password', '$hash')";
+        $sql = "INSERT INTO User (username, email, password,hash,admin)
+        VALUES ('$name', '$email', '$password', '$hash','0')";
         //If registration is successful
         if ($conn->query($sql) === TRUE) {
           echo '<script>console.log("[DEBUG]New record created successfully")</script>';

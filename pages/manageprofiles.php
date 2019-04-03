@@ -1,4 +1,12 @@
 <?php 
+  require("../php_scripts/functions.php");
+   if(!isset($_SESSION["username"])){
+    session_start();
+        $username = $_SESSION["username"];
+        if(!CheckAdmin($username)){
+            header("Location: ../error/401.php");
+            }
+        }
   $currentPage = 'Admin Page';
   include("../headers/header.inc.php");
   require_once("../private/config.php");
@@ -50,14 +58,20 @@
        <div class="row">
         <div class="col-md-1"></div>
            <div class="col-md-10">
-               <div class="row">
-                     <table class="table">
+            <?php if($error != ""){echo '<div role="alert" class="alert alert-danger">'.$error.'</div>';}
+            if($success != ""){echo '<div role="alert" class="alert alert-success">'.$success.'</div>';}?>
+            <br>
+             <input type="text" class="form-control" id="myInput" onkeyup="myFunction()" placeholder="Search for names.."> 
+             <br>
+               <div class="row" style="overflow-y:auto;">
+                     <table class="table" id="myTable">
                         <thead>
                           <tr>
                             <th>Username</th>
                             <th>Email</th>
                             <th>Cotact Number</th>
                             <th>Gender</th>
+                            <th width="7%"></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -70,18 +84,20 @@
                                     echo '<td>'.$row["Username"].'</td>';
                                     echo '<td>'.$row["Email"].'</td>';
                                     echo '<td>';
-                                    if ($row["ContactNumber"] == ''){echo "undefined";}else{echo $row["ContactNumber"];};
+                                    if ($row["ContactNumber"] == ''){echo "Not Set";}else{echo $row["ContactNumber"];};
                                     echo '</td>';
                                     echo '<td>';
-                                    if ($row["Gender"] == ''){echo "undefined";}else{echo $row["Gender"];};
+                                    if ($row["Gender"] == ''){echo "Not Set";}else{echo $row["Gender"];};
                                     echo '</td>';
                                     echo '<td>';
-                                    echo '<a href="#" data-toggle="modal" data-target="#'.$row["Username"].'" class="e-btn">
-                                <i class="fa fa-pencil"></i><span class="d-none d-md-inline-block"> Edit</span></a>';
+                                    echo '<button data-toggle="modal" data-target="#'.$row["Username"].'" class="btn btn-template-outlined">
+                                <i class="fa fa-pencil"></i> Edit</button>';
+                                    echo '<form>';
+                                    echo '<button type="submit" class="btn btn-template-outlined deleteBtn" "><i class="fa fa-save"></i> Delete</button>';
+                                    echo '</form>';
                                     echo '</td>';
                                     echo '<td>';
-                                    echo '<a href="#" data-toggle="edit" data-target="#edit-modal" class="login-btn">
-                        <i class="fa fa-trash"></i><span class="d-none d-md-inline-block">Delete</span></a></a>';
+
                                     echo '</td>';
                                     echo '<div id="'.$row["Username"].'" tabindex="-1" role="dialog" aria-labelledby="e-modalLabel" aria-hidden="true" class="modal fade">
                                        <div role="document" class="modal-dialog">
@@ -91,7 +107,9 @@
                                                 <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
                                              </div>
                                              <div class="modal-body">
-                                                  <form method="post" action="<?php echo '.htmlspecialchars($_SERVER["PHP_SELF"]).'?>" >     
+                                                  <form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]). '" >
+                                                   <div class="form-group">
+                                                      <input id="username-login" type="hidden" class="form-control" name="username" value="'.$row["Username"].'">
                                                   <div class="form-group">
                                                       <input id="email-login" type="text" class="form-control" name="email" placeholder="Email" value="'.$row["Email"].'">
                                                       <span class="error"><?php if(!empty($EmailErr)){echo $EmailErr;}?></span> 
@@ -124,15 +142,34 @@
            </div>
        </div>       
       </div>
-          <!-- MODAL EXAMPLE -->
-
-
-    <!-- MODAL EXAMPLE -->  
     </div>
         <?php
         include ('../headers/footer.inc.php');
         ?>
     <!-- Javascript files-->
+    <script type="text/javascript">  
+    function myFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
     <script src="//code.jquery.com/jquery.min.js"></script> <script type="text/javascript">
     </script>
     <script src="../thirdpartyvendors/jquery.tabledit.js"></script>

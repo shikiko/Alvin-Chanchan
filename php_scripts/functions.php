@@ -34,4 +34,32 @@ function CheckVerified($username){
 	    }//end of select
 }
 
+function CheckAdmin($username){
+	$admin = "";
+	// Create connection
+	$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+	// Check connection
+	if (!$conn) {
+	      header("Location: ../error/500.php");
+	      die("Connection failed: " . $conn->connect_error);
+	    }else{
+	      $sql = "select admin from User where username = '$username' limit 1";
+    	$query= mysqli_query($conn,$sql);
+		while($conn = mysqli_fetch_row($query))
+		{
+		    $admin = $conn[0];
+		}
+		
+	    if($admin == 1){
+	    	return true;
+	    }else{
+	    	return false;
+	    }
+	    //Close connection
+	      $conn->close();
+	    }//end of select
+	}
+
+
+
 ?>

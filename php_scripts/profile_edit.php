@@ -1,6 +1,5 @@
 <?php
 $passwordErr = "";
-require_once("../php_scripts/functions.php");
 $password_oldErr = $passwordNewErr  = $passwordVerifyErr = $successfully= $imageErr = $successfulUpdate= "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
