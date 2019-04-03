@@ -1,5 +1,6 @@
 <?php
 $currentPage = 'Contact Us';
+require_once("../php_scripts/contactMail.php");
 ?>
 
 <!DOCTYPE html>
@@ -66,7 +67,8 @@ $currentPage = 'Contact Us';
                 </div>
               </div>
               <div class="col-md-8 mx-auto">
-                <form method="POST" action="contactMail.php" name="contactusform">
+                  <?php if($ContactSuccess == true){ echo '<div role="alert" class="alert alert-success">We have received your email. We will try to get back to your as soon as possible.</div>';}?>
+                  <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" name="contactusform">
                   <div class="row">
                     <div class="col-sm-6">
                       <div class="form-group">
@@ -99,7 +101,7 @@ $currentPage = 'Contact Us';
                       </div>
                     </div>
                     <div class="col-sm-12 text-center">
-                      <button type="submit" class="btn btn-template-outlined" value="Csubmit"><i class="fa fa-envelope-o"></i> Send message</button>
+                        <button type="submit" class="btn btn-template-outlined" value="Csubmit" name="Csubmit"><i class="fa fa-envelope-o"></i> Send message</button>
                     </div>
                   </div>
                 </form>

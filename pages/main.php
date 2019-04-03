@@ -46,10 +46,12 @@ if ($_SERVER['QUERY_STRING'] == ''){
             <?php
             include("../headers/header.inc.php");
             require_once("../private/config.php");
-            $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-
-            if (mysqli_connect_errno()) {
-                die(mysqli_connect_errno());
+            // Create connection
+	    $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+	    // Check connection
+	    if (!$connection) {
+	      header("Location: ../error/500.php");
+	      die("Connection failed: " . $connection->connect_error);
             }
             $currentCat = explode("=", $_SERVER['QUERY_STRING']);
             $CatType = $currentCat[1];
