@@ -10,8 +10,8 @@
 	   	// Create connection
 	    $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
 	    // Check connection
-	    if ($conn->connect_error) {
-	      echo "connection error";
+	    if (!$conn) {
+	      header("Location: ../error/500.php");
 	      die("Connection failed: " . $conn->connect_error);
 	    }else{
 	      $sql = "select * from User where username = '$username'";

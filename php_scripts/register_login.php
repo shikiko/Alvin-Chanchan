@@ -26,10 +26,10 @@ if (!empty($_POST['login'])){
     // Create connection
     $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
     // Check connection
-    if ($conn->connect_error) {
-      echo "connection error";
-      die("Connection failed: " . $conn->connect_error);
-    }else{
+  if (!$conn) {
+        header("Location: ../error/500.php");
+        die("Connection failed: " . $conn->connect_error);
+      }else{
       $sql = "select * from User where username = '$username' AND password ='$password'";
       // if query checks out (successful login)
       if ($conn->query($sql) !== FALSE) {
@@ -85,10 +85,8 @@ if (!empty($_POST["register"])){
     // Create connection
       $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
     // Check connection
-      if ($conn->connect_error) {
-        echo '<script>console.log("';
-        echo 'connection error';
-        echo '")</script>';
+  if (!$conn) {
+        header("Location: ../error/500.php");
         die("Connection failed: " . $conn->connect_error);
       }else{
         $hash = md5(rand(0,1000));
