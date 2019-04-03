@@ -2,7 +2,7 @@
     $currentPage = 'Listing';
     define('id',$_GET['id']);
     if ($_SERVER['QUERY_STRING'] == ''){
-    header('Location: main.php?category=All');
+    header('Location: index.php?category=All');
 }
 ?>
 <!DOCTYPE html>
@@ -92,6 +92,11 @@
                               $Seller = $row['Seller'];
                               $_SESSION['seller'] = $Seller;
                             }
+                            echo '<div class="row"><div class="col-md-4"></div><div class="col-md-4 mx-auto">';
+                            echo '<a href=""><img src="../img/share-fb.svg" class="img-fluid" width=36 height=36></a>';
+                            echo '<a href=""><img src="../img/share-twitter.svg" class="img-fluid" width=36 height=36></a>';
+                            echo '<a href=""><img src="../img/share-link.svg" class="img-fluid" width=36 height=36></a>';
+                            echo '</div><div class="col-md-3"></div></div>';
                         }
                         ?>
                       <p class="text-center" id="user_details">

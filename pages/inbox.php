@@ -9,7 +9,7 @@ if(!isset($_SESSION["username"])){
 }
 if(!isset($_SESSION['username']))
 {
- header('Location: main.php?category=All');
+ header('Location: index.php?category=All');
 }
 ?>
 
