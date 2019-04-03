@@ -68,7 +68,7 @@ if(!isset($_SESSION['username']))
 
     <div class="table-responsive">
     <h4 align="center">Online User</h4>
-    <p align="right">Hi - <?php echo $_SESSION['username'];  ?> - <a href="logout.php">Logout</a></p>
+    <!--<p align="right">Hi - <?php echo $_SESSION['username'];  ?> - <a href="logout.php">Logout</a></p>-->
     <div id="user_details"></div>
     <div id="user_model_details"></div>
     </div>
@@ -84,7 +84,8 @@ $(document).ready(function(){
  setInterval(function(){
   update_last_activity();
   fetch_user();
- }, 5000);
+  update_chat_history_data();
+ }, 3000);
 
  function fetch_user()
  {
@@ -110,7 +111,7 @@ $(document).ready(function(){
 
  function make_chat_dialog_box(to_user_id, to_user_name)
  {
-  var modal_content = '<div id="user_dialog_'+to_user_id+'" class="user_dialog" title="You have chat with '+to_user_name+'">';
+  var modal_content = '<div id="user_dialog_'+to_user_id+'" class="user_dialog" title="Chatting with '+to_user_name+'">';
   modal_content += '<div style="height:400px; border:1px solid #ccc; overflow-y: scroll; margin-bottom:24px; padding:16px;" class="chat_history" data-touserid="'+to_user_id+'" id="chat_history_'+to_user_id+'">';
   modal_content += fetch_user_chat_history(to_user_id);
   modal_content += '</div>';
@@ -158,7 +159,7 @@ $(document).ready(function(){
    }
   })
  }
-
+ 
  function update_chat_history_data()
  {
   $('.chat_history').each(function(){
@@ -166,11 +167,6 @@ $(document).ready(function(){
    fetch_user_chat_history(to_user_id);
   });
  }
-
- $(document).on('click', '.ui-button-icon', function(){
-  $('.user_dialog').dialog('destroy').remove();
- });
- 
 });  
 </script>
 

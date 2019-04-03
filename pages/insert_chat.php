@@ -70,7 +70,6 @@ function get_user_name($user_id)
  }
 }
 
-
 $to = $_POST['to_user_id'];
 $msg = $_POST['chat_message'];
 $status = 1;
@@ -88,6 +87,6 @@ $connect = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
 $statement = $connect->prepare($query);
 $statement->execute();
 
-echo fetch_user_chat_history($Username, $to);
+echo fetch_user_chat_history($Username, $_POST['to_user_id']);
 ?>
 
