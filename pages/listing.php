@@ -48,7 +48,8 @@
             require_once("../private/config.php");
             $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
             if (mysqli_connect_errno()) {
-                die(mysqli_connect_errno());
+                header("Location: ../error/500.php");
+                die("Connection failed: " . $conn->connect_error);
             }
             ?>
       <div id="content">
@@ -85,7 +86,7 @@
                             while ($row = mysqli_fetch_assoc($merresult)) {
                               echo'<p class=price>$'.$row['Price'].'</p>';
                               echo'<p class=text-center>Item Condition : '.$row['itemCond'].'</p>';
-                              echo'<p class=text-center>List Date : '.$row['ListDate'].'</p>';
+                              echo'<p class=text-center>Listing End Date : '.$row['ListDate'].'</p>';
                               echo'<p class=text-center>Seller : <a href="profile.php?username='.$row['Seller'].'">'.$row['Seller'].'</a></p>';
                               echo'<p class=text-center>Location : '.$row['TradingLocation'].'</p>';
                               define('Seller',$row['Seller']);
@@ -120,11 +121,14 @@
                 </div>
               </div>
               <div class="row">
-                   <ul class="owl-carousel testimonials list-unstyled equal-height">
                 <?php
                 $othsql="SELECT ItemID,itemPicture,ItemName,Price FROM items where Sold = 0 AND Active= 1 AND Seller ='".Seller."' AND ItemID !=".id;
                 if($othresult= mysqli_query($connection,$othsql)){
-                    while ($row = mysqli_fetch_assoc($othresult)) {
+                    if(mysqli_num_rows($othresult)== 0){
+                        echo '<h2 class=text-center style="margin:auto;">User has no other listings!</h2>';
+                    }else{
+                        echo '<ul class="owl-carousel testimonials list-unstyled equal-height">';
+                        while ($row = mysqli_fetch_assoc($othresult)) {
                         echo '<li class="item">';
                         echo '<div class=product>';
                         echo '<div class=image><a href="listing.php?id='.$row['ItemID'].'">';
@@ -145,9 +149,10 @@
                         echo '</li>';
                         
                     }
+                        echo '</ul>';
+                    }  
                 }
                 ?>
-                </ul>
               </div>
             </div>
           </div>
