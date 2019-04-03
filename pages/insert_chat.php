@@ -59,9 +59,8 @@ $connect = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
 
 function get_user_name($user_id)
 {
- $Username = $_SESSION['username'];
  $connect = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
- $query = "SELECT `Username` FROM `user` WHERE Username = '$Username'";
+ $query = "SELECT `Username` FROM `user` WHERE Username = '$user_id'";
  $statement = $connect->prepare($query);
  $statement->execute();
  $result = $statement->get_result()->fetch_all(MYSQLI_ASSOC);;
