@@ -71,6 +71,11 @@ require_once("../php_scripts/ins_listing.php");
                   <input id="itemprice" type="number" step="0.01" class="form-control" name="itemprice">
                 </div>
                 <div class="form-group">
+                  <label >Duration</label>
+                  <span class="error">* <?php echo $itemdurErr;?></span>
+                  <input id="itemdur" type="number" class="form-control" name="itemdur">
+                </div>
+                <div class="form-group">
                   <label >Trading Location</label>
                   <span class="error">* <?php echo $tradelocErr;?></span>
                   <input id="tradeloc" type="text" class="form-control" name="tradeloc">

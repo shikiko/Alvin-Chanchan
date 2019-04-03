@@ -1,6 +1,6 @@
 <?php
 require_once("../php_scripts/functions.php");
-$itemnameErr = $itempriceErr = $tradelocErr = $createErr = $successfulUpload =$imageErr = "";
+$itemnameErr = $itempriceErr=$itemdurErr = $tradelocErr = $createErr = $successfulUpload =$imageErr = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $seller = trim_input($_SESSION["username"]);
@@ -16,8 +16,6 @@ if (!empty(basename($_FILES["fileToUpload"]["name"]))){
 	  	}else{
 	  		$imagename = NULL;
 	  	}
-	
-$listdate = date("Y-m-d");
 if (!empty($_POST["upload"])){ 
   $check = True;
   if (empty($_POST["itemname"])) {
@@ -32,24 +30,29 @@ if (!empty($_POST["upload"])){
   } else {
     $itemprice = trim_input($_POST["itemprice"]);
   }
+  if (empty($_POST["itemdur"])) {
+    $itemdurErr = "Duration is required";
+    $check = False;
+  } else {
+    $itemdur = trim_input($_POST["itemdur"]);
+    $listdate = date("Y-m-d");
+    $listdate = date('Y-m-d',  strtotime($listdate. ' + '.$itemdur.' days'));
+  }
   if (empty($_POST["tradeloc"])) {
     $tradelocErr = "Location is required";
     $check = False;
   } else {
     $tradeloc = trim_input($_POST["tradeloc"]);
   }
-
   if(CheckVerified($seller)){
     if($check == True){
         $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
         if ($conn->connect_error) {
-          echo '<script>console.log("';
-          echo 'connection error';
-          echo '")</script>';
+          header("Location: ../error/500.php");
           die("Connection failed: " . $conn->connect_error);
         }else{
           $sql = "INSERT INTO items (itemName,Description, Price,Category,itemCond,TradingLocation,itemPicture,Active,Sold,ListDate,Seller)
-          VALUES ('$itemname','$itemdesc', $itemprice, '$itemcat', '$itemcond','$tradeloc','$imagename',1,0,'$listdate','$seller')";#FIX THI  S
+          VALUES ('$itemname','$itemdesc' ,$itemprice, '$itemcat', '$itemcond','$tradeloc','$imagename',1,0,'$listdate','$seller')";#FIX THI  S
           if ($conn->query($sql) === TRUE) {
             echo '<script>console.log("[DEBUG]New record created successfully")</script>';
             $successfulUpload = true;
