@@ -4,9 +4,10 @@
   require_once("../php_scripts/profile_view.php");
   include("../headers/header.inc.php");
     $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-    if (mysqli_connect_errno()) {
-        die(mysqli_connect_errno());
-    } 
+      if (!$connection) {
+        header("Location: ../error/500.php");
+        die("Connection failed: " . $connection->connect_error);
+      }
 ?>
 <html>
   <head>
@@ -70,7 +71,7 @@
               echo '"';
              ?>
             class="img-fluid rounded-circle"></div>
-              <div class="col-md-5">
+              <div class="col-md-7">
                 <div class="heading">
                   <?php
                   echo '<h3>';
@@ -90,6 +91,21 @@
                   </li>
                 </ul>
               </div>
+              <?php if($username === $_SESSION["username"]){
+                echo '<div class="col-lg-3 mt-4 mt-lg-0 col-md-2">
+              <div class="panel panel-default sidebar-menu">
+                <div class="panel-heading">
+                  <h3 class="h4 panel-title">Options</h3>
+                </div>
+                <div class="panel-body">
+                  <ul class="nav nav-pills flex-column text-sm">
+                    <li class="nav-item"><a href="editprofile.php" class="nav-link active"><i class="fa fa-list"></i> Edit Profile</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>';
+              }?>
+ 
             </div>
           </section>
         </div>

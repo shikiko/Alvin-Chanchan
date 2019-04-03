@@ -75,11 +75,10 @@ function ValidatePassword($password_old){
 	$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
 	$username = $_SESSION["username"];
 	//Checks if connections exists
-	if ($conn->connect_error) {
-      echo "connection error";
-      die("Connection failed: " . $conn->connect_error);
-      return false;
-    }else{
+	if (!$conn) {
+	      header("Location: ../error/500.php");
+	      die("Connection failed: " . $conn->connect_error);
+	    }else{
     	//select query to get password
     	$sql = "select password from User where username = '$username'";
     	$query= mysqli_query($conn,$sql);
@@ -104,11 +103,10 @@ function UpdatePassword($password_new){
 	$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
 	$username = $_SESSION["username"];
 	//Checks if connections exists
-	if ($conn->connect_error) {
-      echo "connection error";
-      die("Connection failed: " . $conn->connect_error);
-      return false;
-    }else{
+	if (!$conn) {
+	      header("Location: ../error/500.php");
+	      die("Connection failed: " . $conn->connect_error);
+	    }else{
 		$sql = "Update user set password ='$password_new' where username='$username'";
 		//checks if record is successful (true = successful)
 		if ($conn->query($sql) === TRUE) {
@@ -117,6 +115,7 @@ function UpdatePassword($password_new){
 		    return true;
 		} else {
 		    //echo "Error updating record: " . $conn->error;
+		   	header("Location: ../error/500.php");
 		    $conn->close();
 		    return false;
 		}
@@ -186,11 +185,10 @@ function UploadPathToDB($imagename){
 	$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
 	$username = $_SESSION["username"];
 	//Checks if connections exists
-	if ($conn->connect_error) {
-      echo "connection error";
-      die("Connection failed: " . $conn->connect_error);
-      return false;
-    }else{
+	if (!$conn) {
+	      header("Location: ../error/500.php");
+	      die("Connection failed: " . $conn->connect_error);
+	    }else{
 		$sql = "Update user set ProfilePicture ='$imagename' where username='$username'";
 		//checks if record is successful (true = successful)
 		if ($conn->query($sql) === TRUE) {

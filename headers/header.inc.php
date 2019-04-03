@@ -39,8 +39,6 @@ require_once("../php_scripts/functions.php");
                   echo '<div class="login"><a class="login-btn" href="../pages/profile.php?username='.($_SESSION["username"]);
                   echo'">
                   <i class="fa fa-user"></i><span class="d-none d-md-inline-block">My Profile</span></a>
-                  <a href="../pages/uploadListing.php" class="signup-btn"><i class="fa fa-balance-scale"></i>
-                  <span class="d-none d-md-inline-block">Create Listing</span></a>
                   <a href="Inbox.php" class="signup-btn"><i class="fa fa-inbox"></i>
                   <span class="d-none d-md-inline-block">Messages</span></a>
                   <a href="../pages/logout.php" class="signup-btn"><i class="fa fa-power-off"></i>
@@ -89,11 +87,11 @@ require_once("../php_scripts/functions.php");
          <button type="button" data-toggle="collapse" data-target="#navigation" class="navbar-toggler btn-template-outlined"><span class="sr-only">Toggle navigation</span><i class="fa fa-align-justify"></i></button>
          <div id="navigation" class="navbar-collapse collapse">
             <ul class="nav navbar-nav ml-auto">
-               <li class="nav-item dropdown <?php if($currentPage=='Home'){echo 'active';}?>"><a href="main.php?category=All">Home</b></a>
+               <li class="nav-item dropdown <?php if($currentPage=='Home'){echo 'active';}?>"><a href="../pages/main.php?category=All">Home</b></a>
                </li>
-               <li class="nav-item dropdown <?php if($currentPage=='Search'){echo 'active';}?>"><a href="search.php">Search</b></a>
+               <li class="nav-item dropdown <?php if($currentPage=='Search'){echo 'active';}?>"><a href="../pages/search.php">Search</b></a>
                </li>
-               <li class="nav-item dropdown <?php if($currentPage=='Contact Us'){echo 'active';}?>"><a href="contactus.php">Contact Us</b></a>
+               <li class="nav-item dropdown <?php if($currentPage=='Contact Us'){echo 'active';}?>"><a href="../pages/contactus.php">Contact Us</b></a>
                </li>
                <!-- ========== FULL WIDTH MEGAMENU ==================-->
                <li class="nav-item dropdown menu-large">
