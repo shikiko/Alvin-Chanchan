@@ -89,7 +89,5 @@ $statement = $connect->prepare($query);
 $statement->execute();
 
 echo fetch_user_chat_history($Username, $to);
-
-
 ?>
 
