@@ -1,7 +1,7 @@
 <?php
 require_once("../php_scripts/functions.php");
 require_once("../php_scripts/verifyEmail.php");
-$nameErr = $emailErr = $passwordErr = $createErr = $loginEmailErr = $loginPasswordErr = $successfulRegister ="";
+$nameErr = $emailErr = $passwordErr = $createErr = $loginEmailErr = $loginPasswordErr = $successfulRegister = $error = "";
 // If user posts a request.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 //if login button is clicked
@@ -31,18 +31,16 @@ if (!empty($_POST['login'])){
         die("Connection failed: " . $conn->connect_error);
       }else{
       $sql = "select * from User where username = '$username' AND password ='$password'";
+      $query = mysqli_query($conn, $sql);
       // if query checks out (successful login)
-      if ($conn->query($sql) !== FALSE) {
+      if (mysqli_num_rows($query) > 0) {
           echo '<script>console.log("[DEBUG]Found you")</script>';
           session_start();
           $_SESSION["username"] = $username;
           $_SESSION["current_user"] = $username;
             header("Refresh:0");
-      } else {
-        $error = "Error: " . $sql . "<br>" . $conn->error;
-          echo '<script>console.log("[DEBUG]SQL Statement:';
-          echo $error;
-          echo '")</script>';
+      } else { // wrong password
+        $error = True;
       }
     //Close connection
       $conn->close();

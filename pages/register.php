@@ -52,7 +52,7 @@ require_once("../php_scripts/register_login.php");
               <p class="lead">Not our registered customer yet?</p>
               <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
               <hr>
-              <?php if($successfulRegister == true){echo '<div role="alert" class="alert alert-success">Your account has been made, Please verify it by clicking the activation link that has been send to your email.</div>';} ?>
+              <?php if($successfulRegister == true){echo '<div role="alert" class="alert alert-success">Your account has been made, Please verify it by clicking the activation link that has been send to your email.</div>';}?>
               <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
                 <input type='hidden' name='action' value='register' />
                 <div class="form-group">
@@ -82,6 +82,7 @@ require_once("../php_scripts/register_login.php");
               <h2 class="text-uppercase">Login</h2>
               <p class="lead">Already our customer?</p>
               <p class="text-muted">Please login here.</p>
+              <?php  if($error == true){echo '<div role="alert" class="alert alert-danger">Wrong password</div>';} ?>
               <hr>
               <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">
                 <div class="form-group">
