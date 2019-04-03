@@ -47,7 +47,7 @@ $connect = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
  $output .= '</ul>';
  $query = "
  UPDATE `system` 
- SET `status` = '0' 
+ SET `status` = '1' 
  WHERE `To` = '".$to_user_id."' 
  AND `From` = '".$from_user_id."' 
  AND `status` = '1'

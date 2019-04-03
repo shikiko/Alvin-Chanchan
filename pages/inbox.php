@@ -82,14 +82,16 @@ if(!isset($_SESSION['username']))
 
 <script>  
 $(document).ready(function(){
-
- fetch_user();
-
+    fetch_user();
+    update_chat_history_data();
  setInterval(function(){
   update_last_activity();
-  fetch_user();
-  update_chat_history_data();
- }, 3000);
+  
+ }, 5000);
+ 
+  setInterval(function(){
+   fetch_user();
+}, 1000);
 
  function fetch_user()
  {

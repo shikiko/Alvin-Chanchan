@@ -23,7 +23,7 @@ $connect = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
  $output = '';
  if($count > 0)
  {
-  $output = '<span class="label label-success">'.$count.'</span>';
+  $output = '<span class="badge badge-info">'.$count.'</span>';
  }
  return $output;
 }
@@ -75,11 +75,11 @@ foreach($result as $row)
 
  if($user_last_activity > $current_timestamp)
  {
-  $status = '<span class="label label-success">Online</span>';
+  $status = '<span class="badge badge-success">Online</span>';
  }
  else
  {
-  $status = '<span class="label label-danger">Offline</span>';
+  $status = '<span class="badge badge-danger">Offline</span>';
  }
  $output .= '
  <tr>

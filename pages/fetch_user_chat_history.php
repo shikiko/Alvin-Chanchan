@@ -44,6 +44,7 @@ function fetch_user_chat_history($from_user_id, $to_user_id)
   </li>
   ';
  }
+ 
  $output .= '</ul>';
  $query = "
  UPDATE `system` 
