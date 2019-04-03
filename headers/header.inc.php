@@ -39,6 +39,8 @@ require_once("../php_scripts/functions.php");
                   echo '<div class="login"><a class="login-btn" href="../pages/profile.php?username='.($_SESSION["username"]);
                   echo'">
                   <i class="fa fa-user"></i><span class="d-none d-md-inline-block">My Profile</span></a>
+                  <a href="../pages/uploadListing" class="signup-btn"><i class="fa fa-balance-scale"></i>
+                  <span class="d-none d-md-inline-block">Create Listing</span></a>
                   <a href="Inbox.php" class="signup-btn"><i class="fa fa-inbox"></i>
                   <span class="d-none d-md-inline-block">Messages</span></a>
                   <a href="../pages/logout.php" class="signup-btn"><i class="fa fa-power-off"></i>
