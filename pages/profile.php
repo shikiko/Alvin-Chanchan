@@ -64,6 +64,9 @@
                   <li>
                     <div>Gender: <?php if(!isset($gender)){echo "Unspecified";}else{echo $gender;} ?></div>
                   </li>
+                  <li>
+                    <div>Verified: <?php if($verified == 1){echo 'Verified';} else{ echo 'Unverified';}?></div>
+                  </li>
                 </ul>
               </div>
               <?php 

@@ -2,7 +2,7 @@
   	require_once("../private/config.php");
   	require_once("../php_scripts/functions.php");
 
-  	$phone = $email = $gender = $profilepic = "";
+  	$phone = $email = $gender = $profilepic = $verified = "";
     define('username',$_GET['username']);
     $username = $_GET['username'];
     if(Exists($username)){
@@ -12,7 +12,7 @@
     }
 
     function GetData($username){
-    	global $phone, $email,$gender,$profilepic;
+    	global $phone, $email,$gender,$profilepic, $verified;
 	   	// Create connection
 	    $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
 	    // Check connection
@@ -30,6 +30,7 @@
 			    	$gender = $row["Gender"];
 			    	$email = $row["Email"];
 			    	$profilepic = $row["ProfilePicture"];
+			    	$verified = $row["verified"];
 			    }
 			} else {
 			    header("Location: ../error/404.php");
