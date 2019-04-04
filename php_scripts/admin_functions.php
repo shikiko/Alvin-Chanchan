@@ -38,7 +38,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	  	}else{
 	  		$error ="Email cannot be null";
 	  	}
-	}
+	}//END OF EDIT MODAL
+	if(!empty($_POST["delete"])){
+			$username = $_POST["username"];
+			Delete($username);
+		}
+
 }
 
 function UploadEmail($email, $username){

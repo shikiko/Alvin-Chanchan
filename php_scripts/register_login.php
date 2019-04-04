@@ -1,6 +1,8 @@
 <?php
 require_once("../php_scripts/functions.php");
 require_once("../php_scripts/verifyEmail.php");
+global $error;
+
 $nameErr = $emailErr = $passwordErr = $createErr = $loginEmailErr = $loginPasswordErr = $successfulRegister = $error = "";
 // If user posts a request.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

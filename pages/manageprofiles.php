@@ -92,9 +92,12 @@
                                     echo '<td>';
                                     echo '<button data-toggle="modal" data-target="#'.$row["Username"].'" class="btn btn-template-outlined">
                                 <i class="fa fa-pencil"></i> Edit</button>';
-                                    echo '<form>';
-                                    echo '<button type="submit" class="btn btn-template-outlined deleteBtn" "><i class="fa fa-save"></i> Delete</button>';
+                                  if($row["admin"] != 1){
+                                    echo '<form method="post" action="'.htmlspecialchars($_SERVER["PHP_SELF"]). '" >';
+                                    echo '<input id="username-login" type="hidden" class="form-control" name="username" value="'.$row["Username"].'"> <br>';
+                                    echo '<button type="submit" class="btn btn-template-outlined" name="delete" value="delete">Delete</button>';
                                     echo '</form>';
+                                  }
                                     echo '</td>';
                                     echo '<td>';
 

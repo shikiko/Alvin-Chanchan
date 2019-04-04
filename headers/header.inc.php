@@ -1,15 +1,11 @@
 <?php 
+require_once("../php_scripts/login_modal.php");
+
 if(!isset($_SESSION["username"])){
     session_start(); 
 }
-
-//echo $_SESSION["current_user"];
-
 require_once("../private/config.php"); 
-require_once("../php_scripts/login_modal.php");
 require_once("../php_scripts/functions.php");
-
-
 ?>
 <!-- Top bar-->
 <title>Fast Trade | <?php echo $currentPage;?></title>

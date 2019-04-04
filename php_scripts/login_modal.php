@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		          $_SESSION["current_user"] = $username;
 		            header("Refresh:0");
 		      } else { // wrong password
-		        $modalErr = True;
+		        $error = True;
 		      }
 			// Close connection
 		  	$conn->close();
