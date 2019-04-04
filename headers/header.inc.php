@@ -5,6 +5,7 @@ if(!isset($_SESSION["username"])){
     session_start(); 
 }
 require_once("../private/config.php"); 
+require_once("../php_scripts/admin_functions.php");
 require_once("../php_scripts/functions.php");
 ?>
 <!-- Top bar-->
@@ -12,6 +13,7 @@ require_once("../php_scripts/functions.php");
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="..\js\front.js"></script>
       <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
      <!-- Font Awesome CSS-->
      <link rel="stylesheet" href="../vendor/font-awesome/css/font-awesome.min.css">
@@ -23,7 +25,7 @@ require_once("../php_scripts/functions.php");
      <link rel="stylesheet" href="../vendor/owl.carousel/assets/owl.carousel.css">
      <link rel="stylesheet" href="../vendor/owl.carousel/assets/owl.theme.default.css">
      <!-- theme stylesheet-->
-     <link rel="stylesheet" href="../css/style.pink.css" id="theme-stylesheet">
+     <link rel="stylesheet" href="../css/style.default.css" id="theme-stylesheet">
      <!-- Custom stylesheet - for your changes-->
      <link rel="stylesheet" href="../css/custom.css">
      <!-- Favicon and apple touch icons-->
@@ -32,27 +34,25 @@ require_once("../php_scripts/functions.php");
 <title>Fast Trade | <?php echo $currentPage;?></title>
 <div class="top-bar">
    <div class="container">
-    <button type="button" data-toggle="collapse" data-target="#style-switch" id="style-switch-button" class="btn btn-primary hidden-xs hidden-sm collapsed" aria-expanded="false"><i class="fa fa-cog fa-2x"></i></button>
-    <div id="style-switch" class="collapse" style="">
-        <h4 class="text-uppercase">Select theme colour</h4>
-        <form class="mb-3">
-          <select name="colour" id="colour" class="form-control">
-            <option value="">select colour variant</option>
-            <option value="default">turquoise</option>
-            <option value="pink">pink</option>
-            <option value="green">green</option>
-            <option value="violet">violet</option>
-            <option value="lightblue">light blue</option>
-            <option value="blue">blue</option>
-            <option value="red">red</option>
-            <option value="marsala">marsala</option>
-          </select>
-        </form>
-        <p><img src="https://d19m59y37dris4.cloudfront.net/universal/2-0-2/img/template-mac.png" alt="" class="img-fluid"></p>
-        <p class="text-muted text-small">Stylesheet switching is done via JavaScript and can cause a blink while page loads. This will not happen in your production code.</p>
-      </div>
       <div class="row d-flex align-items-center">
          <div class="col-md-6 d-md-block d-none">
+              <button type="button" data-toggle="collapse" data-target="#style-switch" id="style-switch-button" class="btn btn-primary hidden-xs hidden-sm collapsed" aria-expanded="false"><i class="fa fa-cog fa-2x"></i></button>
+          <div id="style-switch" class="collapse" style="">
+              <h4 class="text-uppercase">Select theme colour</h4>
+              <form class="mb-3">
+                <select name="colour" id="colour" class="form-control">
+                  <option value="">select colour variant</option>
+                  <option value="default">turquoise</option>
+                  <option value="pink">pink</option>
+                  <option value="green">green</option>
+                  <option value="violet">violet</option>
+                  <option value="lightblue">light blue</option>
+                  <option value="blue">blue</option>
+                  <option value="red">red</option>
+                  <option value="marsala">marsala</option>
+                </select>
+              </form>
+            </div>
          </div>
          <div class="col-md-6">
             <div class="d-flex justify-content-md-end justify-content-between">
@@ -169,22 +169,3 @@ require_once("../php_scripts/functions.php");
 </div>
 <!-- Breadcrumb End -->
 
-<script>
-  function() {
-
-  if ($(this).val() !== '') {
-
-    var theme_csspath = 'css/style.' + $(this).val() + '.css';
-
-    alternateColour.attr("href", theme_csspath);
-
-    $.cookie("theme_csspath", theme_csspath, {
-      expires: 365,
-      path: document.URL.substr(0, document.URL.lastIndexOf('/'))
-    });
-
-  }
-
-  return false;
-}
-</script>

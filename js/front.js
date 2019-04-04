@@ -253,10 +253,11 @@ $(function () {
     }
 
     $("#colour").change(function () {
+        console.log("test");
 
         if ($(this).val() !== '') {
 
-            var theme_csspath = 'css/style.' + $(this).val() + '.css';
+            var theme_csspath = '../css/style.' + $(this).val() + '.css';
 
             alternateColour.attr("href", theme_csspath);
 
