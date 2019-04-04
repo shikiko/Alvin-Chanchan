@@ -86,9 +86,9 @@
                             }
                        ?>
                     </form>
-                       <?php if($Seller === $_SESSION["username"]){
-                echo '<div class="col-lg-12">
-                  <form class=text-center action="editListing.php" method="POST" enctype="multipart/form-data">
+                       <?php if((!empty($_SESSION["username"])) && $Seller === $_SESSION["username"]){?>
+                    echo '<div class="col-lg-12">
+                    <form class=text-center action="editListing.php" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="targetitem" value='.id.' />
                     <input type="hidden" name="itemcond" value=""/>
                     <input type="hidden" name="itemcat" value=""/>
@@ -100,7 +100,7 @@
                     <button type="submit" class="btn btn-template-outlined" name="upload" value="upload"><i class="fa fa-user-md"></i> Edit Listing</button>
                 </form>   
             </div>';
-              }?>
+              <?php }?>
                   </div>
                 </div>
                   
