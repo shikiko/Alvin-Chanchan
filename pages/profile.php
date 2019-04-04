@@ -1,8 +1,9 @@
 <?php 
   $currentPage = 'Profile'; 
   require_once("../private/config.php");
-  
-  
+  if ($_SERVER['QUERY_STRING'] == ''){
+    header('Location: index.php?category=All');
+}
     $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
       if (!$conn) {
         header("Location: ../error/500.php");
