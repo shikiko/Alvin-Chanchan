@@ -9,11 +9,6 @@ function fetch_user_chat_history($from_user_id, $to_user_id)
 {
     
 $connect = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-// Check connection
-if (!$connection) {
-  header("Location: ../error/500.php");
-  die("Connection failed: " . $connection->connect_error);
-}
  $query = "
  SELECT * FROM `system`
  WHERE (`From` = '".$from_user_id."' 
@@ -65,11 +60,6 @@ if (!$connection) {
 function get_user_name($user_id)
 {
  $connect = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-// Check connection
-if (!$connection) {
-  header("Location: ../error/500.php");
-  die("Connection failed: " . $connection->connect_error);
-}
  $query = "SELECT `Username` FROM `user` WHERE Username = '$user_id'";
  $statement = $connect->prepare($query);
  $statement->execute();
@@ -98,11 +88,6 @@ $data = array(
 $query = "INSERT INTO `system` (`To`, `From`, `Body`, `status`) VALUES ('$to', '$Username', '$msg', '$status')";
 
 $connect = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-// Check connection
-if (!$connect) {
-  header("Location: ../error/500.php");
-  die("Connection failed: " . $connection->connect_error);
-}
 $statement = $connect->prepare($query);
 $statement->execute();
 
