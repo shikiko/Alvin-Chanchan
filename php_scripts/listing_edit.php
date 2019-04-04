@@ -4,7 +4,6 @@ $itemnameErr = $itempriceErr=$itemdurErr = $tradelocErr = $createErr = $successf
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $seller = trim_input($_SESSION["username"]);
-$itemcond = trim_input($_POST["itemcond"]);
 $itemcat = trim_input($_POST["itemcat"]);
 $itemdesc = trim_input($_POST["itemdesc"]);
 $targetitem = trim_input($_POST["targetitem"]);

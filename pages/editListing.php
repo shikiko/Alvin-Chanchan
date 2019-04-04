@@ -1,7 +1,7 @@
 <?php 
 $currentPage = 'Edit Listing';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $retrievedtarget = $_POST["targetitem"];
+  $targetitem = $_POST["targetitem"];
 }else{
     header("Location: ../error/401.php");
 }
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="col-lg-12">
             <div class="box">
                 <?php
-                $edsql="SELECT ItemName,Price,TradingLocation,Description from items where ItemID=".$retrievedtarget;
+                $edsql="SELECT ItemName,Price,TradingLocation,Description from items where ItemID=".$targetitem;
                  if($edresult= mysqli_query($connection,$edsql)){
                 while ($row = mysqli_fetch_assoc($edresult)) {
                 $oldName=$row['ItemName'];
@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <?php if($successfulUpload == true){echo '<div role="alert" class="alert alert-success">Your listing has been created.</div>';} ?>
               <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post"enctype="multipart/form-data" >
                 <input type='hidden' name='action' value='upload'/>
-                <input type='hidden' name='targetitem' value='<?php echo $retrievedtarget?>'/>
+                <input type='hidden' name='targetitem' value='<?php echo $targetitem?>'/>
                 <div class="form-group">
                   <label >Item Name</label>
                   <span class="error">* <?php echo $itemnameErr;?></span>

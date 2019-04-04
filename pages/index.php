@@ -119,7 +119,7 @@ if ($_SERVER['QUERY_STRING'] == ''){
                         echo '<img src="../img/NoImg.png" alt="No Image Available" class="img-fluid image1">';
                     }
                     else {
-                        echo '<img src="'.$row['itemPicture'].'" alt="';
+                        echo '<img src="'.$selectiveRow['itemPicture'].'" alt="';
                         echo $selectiveRow['ItemName'];
                         echo '" class="img-fluid image1">';
                     }
