@@ -5,6 +5,7 @@ if(!isset($_SESSION["username"])){
     session_start(); 
 }
 require_once("../private/config.php"); 
+require_once("../php_scripts/admin_functions.php");
 require_once("../php_scripts/functions.php");
 ?>
 <!-- Top bar-->
@@ -20,10 +21,16 @@ require_once("../php_scripts/functions.php");
      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
      <!-- Bootstrap Select-->
      <link rel="stylesheet" href="../vendor/bootstrap-select/css/bootstrap-select.min.css">
+
+     <!-- owl carousel-->
+     <link rel="stylesheet" href="../vendor/owl.carousel/assets/owl.carousel.css">
+     <link rel="stylesheet" href="../vendor/owl.carousel/assets/owl.theme.default.css">
      <!-- theme stylesheet-->
      <link rel="stylesheet" href="../css/style.default.css" id="theme-stylesheet">
      <!-- Custom stylesheet - for your changes-->
      <link rel="stylesheet" href="../css/custom.css">
+     <!-- Favicon and apple touch icons-->
+     <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
    </head>
 <title>Fast Trade | <?php echo $currentPage;?></title>
 <div class="top-bar">
