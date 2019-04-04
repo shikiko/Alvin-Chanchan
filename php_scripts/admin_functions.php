@@ -12,18 +12,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			//checks if input is numeric
 			if(is_numeric($_POST["Contact"])){
 				$phone = trim_input($_POST["Contact"]);
-				UploadTelephone($phone, $username);
+				UpdateTelephone($phone, $username);
 			}else{
 				$phone = NULL;
 				$error = ' Please enter a valid phone number';
 			}
 	  	}else{
 	  		$phone =NULL;
-	  		UploadTelephone($phone, $username);
+	  		UpdateTelephone($phone, $username);
 	  	}
 	  	if(!empty($_POST["gender"])){
 	  		$gender = trim_input($_POST["gender"]);
-	  		UploadGender($gender, $username);
+	  		UpdateGender($gender, $username);
 	  	}
 
 	  	if (!empty($_POST["email"])){
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		      $error = "Invalid email format";
 		    }else{
 		      $email = trim_input($_POST["email"]);
-		      UploadEmail($email, $username);
+		      UpdateEmail($email, $username);
 		    }
 	  	}else{
 	  		$error ="Email cannot be null";
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 }
 
-function UploadEmail($email, $username){
+function UpdateEmail($email, $username){
 	$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
 	//$username = $_GET["username"];
 	//Checks if connections exists
@@ -70,7 +70,7 @@ function UploadEmail($email, $username){
 	}//end of else
 }
 
-function UploadTelephone($phone, $username){
+function UpdateTelephone($phone, $username){
 	$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
 	//Checks if connections exists
 	if ($conn->connect_error) {
@@ -93,7 +93,7 @@ function UploadTelephone($phone, $username){
 	}//end of else
 }
 
-function UploadGender($gender, $username){
+function UpdateGender($gender, $username){
 	$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
 	$username = $_SESSION["username"];
 	//Checks if connections exists
@@ -141,7 +141,7 @@ function Delete($username){
 
 }
 
-function GetData(){
+function GetUserData(){
    	// Create connection
     $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
     // Check connection
@@ -151,15 +151,6 @@ function GetData(){
     }else{
       $sql = "select * from User";
 		$result = $conn->query($sql);
-		// if ($result->num_rows > 0) {
-		//     // output data of each row
-		//     while($row = $result->fetch_assoc()) {
-		//     	$phone = $row["ContactNumber"];
-		//     	$gender = $row["Gender"];
-		//     	$email = $row["Email"];
-		//     	$profilepic = $row["ProfilePicture"];
-		//     }
-		// }
     //Close connection
       $conn->close();
       return $result;
