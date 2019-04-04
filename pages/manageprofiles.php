@@ -42,6 +42,7 @@
                             <th>Email</th>
                             <th>Cotact Number</th>
                             <th>Gender</th>
+                            <th>Verified</th>
                             <th width="7%"></th>
                           </tr>
                         </thead>
@@ -61,6 +62,9 @@
                                     if ($row["Gender"] == ''){echo "Not Set";}else{echo $row["Gender"];};
                                     echo '</td>';
                                     echo '<td>';
+                                    if ($row["verified"] == 0){echo "Not Verified";}else{echo 'Verified';};
+                                    echo '</td>';
+                                    echo '<td>';
                                     echo '<button data-toggle="modal" data-target="#'.$row["Username"].'" class="btn btn-template-outlined">
                                 <i class="fa fa-pencil"></i> Edit</button>';
                                   if($row["admin"] != 1){
@@ -71,7 +75,6 @@
                                   }
                                     echo '</td>';
                                     echo '<td>';
-
                                     echo '</td>';
                                     echo '<div id="'.$row["Username"].'" tabindex="-1" role="dialog" aria-labelledby="e-modalLabel" aria-hidden="true" class="modal fade">
                                        <div role="document" class="modal-dialog">
@@ -94,8 +97,16 @@
                                                    </div>
                                                   <div class="form-group">
                                                     <select id="gender" class="form-control" name="gender">
+                                                      <option value="Unset">Change Gender</option>
                                                       <option value="Male">Male</option>
                                                       <option value="Female">Female</option>
+                                                    </select>
+                                                  </div>
+                                                  <div class="form-group">
+                                                    <select id="verified" class="form-control" name="verified">
+                                                      <option value="2">Change Email Verified State</option>
+                                                      <option value="1">Verified</option>
+                                                      <option value="0">Not Verified</option>
                                                     </select>
                                                   </div>
                                                    <p class="text-center">

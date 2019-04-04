@@ -4,7 +4,7 @@ require_once("../php_scripts/functions.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if(!empty($_POST["edit_modal"])){
-
+		$verified = trim_input($_POST['verified']);
 		$gender = trim_input($_POST['gender']);
 		$username = $_POST["username"];
 		//checks if phone input is empty
@@ -21,9 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	  		$phone =NULL;
 	  		UpdateTelephone($phone, $username);
 	  	}
-	  	if(!empty($_POST["gender"])){
+	  	if(($_POST["gender"]) != "Unset"){
 	  		$gender = trim_input($_POST["gender"]);
 	  		UpdateGender($gender, $username);
+	  	}
+
+	  	if(($_POST["verified"]) != 2){
+	  		$verified = trim_input($_POST["verified"]);
+	  		VerifyEmail($verified, $username);
 	  	}
 
 	  	if (!empty($_POST["email"])){
@@ -81,11 +86,11 @@ function UpdateTelephone($phone, $username){
 		$sql = "Update user set ContactNumber ='$phone' where username='$username'";
 		//checks if record is successful (true = successful)
 		if ($conn->query($sql) === TRUE) {
-		    header("Location: ../error/500.php");
 		    $conn->close();
 		    return true;
 		} else {
 		    //echo "Error updating record: " . $conn->error;
+			header("Location: ../error/500.php");
 		    $conn->close();
 		    return false;
 		}
@@ -105,11 +110,35 @@ function UpdateGender($gender, $username){
 		$sql = "Update user set Gender ='$gender' where username='$username'";
 		//checks if record is successful (true = successful)
 		if ($conn->query($sql) === TRUE) {
-			header("Location: ../error/500.php");
 		    $conn->close();
 		    return true;
 		} else {
 		    //echo "Error updating record: " . $conn->error;
+			header("Location: ../error/500.php");
+		    $conn->close();
+		    return false;
+		}
+    //Close connection
+	}//end of else
+}
+
+function VerifyEmail($verified, $username){
+	$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+	$username = $_SESSION["username"];
+	//Checks if connections exists
+	if ($conn->connect_error) {
+      echo "connection error";
+      die("Connection failed: " . $conn->connect_error);
+      return false;
+    }else{
+		$sql = "Update user set verified ='$verified' where username='$username'";
+		//checks if record is successful (true = successful)
+		if ($conn->query($sql) === TRUE) {
+		    $conn->close();
+		    return true;
+		} else {
+		    //echo "Error updating record: " . $conn->error;
+			header("Location: ../error/500.php");
 		    $conn->close();
 		    return false;
 		}
