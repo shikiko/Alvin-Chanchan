@@ -170,8 +170,3 @@ require_once("../php_scripts/functions.php");
 </div>
 <!-- Breadcrumb End -->
 
-<!-- Javascript files-->
-<script src="../vendor/jquery/jquery.min.js"></script>
-<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="../vendor/jquery.cookie/jquery.cookie.js"></script>
-<script src="//code.jquery.com/jquery.min.js"></script>
