@@ -1,9 +1,15 @@
 <?php
   	require_once("../private/config.php");
+  	require_once("../php_scripts/functions.php");
+
   	$phone = $email = $gender = $profilepic = "";
     define('username',$_GET['username']);
     $username = $_GET['username'];
-    GetData($username);
+    if(Exists($username)){
+    	GetData($username);
+    }else{
+    	GetData($username);
+    }
 
     function GetData($username){
     	global $phone, $email,$gender,$profilepic;
@@ -26,7 +32,7 @@
 			    	$profilepic = $row["ProfilePicture"];
 			    }
 			} else {
-			    echo "0 results";
+			    header("Location: ../error/404.php");
 			}
 	    //Close connection
 	      $conn->close();

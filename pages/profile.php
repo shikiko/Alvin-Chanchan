@@ -1,5 +1,6 @@
 <?php 
   $currentPage = 'Profile'; 
+  require_once("../php_scripts/profile_view.php");
   require_once("../private/config.php");
   if ($_SERVER['QUERY_STRING'] == ''){
     header('Location: index.php?category=All');
@@ -9,13 +10,10 @@
         header("Location: ../error/500.php");
         die("Connection failed: " . $conn->connect_error);
       }
+      include("../headers/header.inc.php");
 ?>
 <html>
   <head>
-      <?php
-      include("../headers/header.inc.php");
-      require_once("../php_scripts/profile_view.php");
-      ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">

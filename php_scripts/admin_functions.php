@@ -48,7 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 function UpdateEmail($email, $username){
 	$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-	//$username = $_GET["username"];
 	//Checks if connections exists
 	if ($conn->connect_error) {
       echo "connection error";
@@ -63,6 +62,7 @@ function UpdateEmail($email, $username){
 		    return true;
 		} else {
 		    //echo "Error updating record: " . $conn->error;
+		    header("Location: ../error/500.php");
 		    $conn->close();
 		    return false;
 		}
@@ -81,7 +81,7 @@ function UpdateTelephone($phone, $username){
 		$sql = "Update user set ContactNumber ='$phone' where username='$username'";
 		//checks if record is successful (true = successful)
 		if ($conn->query($sql) === TRUE) {
-		    //echo "Record updated successfully";
+		    header("Location: ../error/500.php");
 		    $conn->close();
 		    return true;
 		} else {
@@ -105,7 +105,7 @@ function UpdateGender($gender, $username){
 		$sql = "Update user set Gender ='$gender' where username='$username'";
 		//checks if record is successful (true = successful)
 		if ($conn->query($sql) === TRUE) {
-		    //echo "Record updated successfully";
+			header("Location: ../error/500.php");
 		    $conn->close();
 		    return true;
 		} else {

@@ -20,12 +20,10 @@ require_once("../php_scripts/functions.php");
      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
      <!-- Bootstrap Select-->
      <link rel="stylesheet" href="../vendor/bootstrap-select/css/bootstrap-select.min.css">
-     <!-- owl carousel-->
      <!-- theme stylesheet-->
      <link rel="stylesheet" href="../css/style.default.css" id="theme-stylesheet">
      <!-- Custom stylesheet - for your changes-->
      <link rel="stylesheet" href="../css/custom.css">
-     <!-- Favicon and apple touch icons-->
    </head>
 <title>Fast Trade | <?php echo $currentPage;?></title>
 <div class="top-bar">
