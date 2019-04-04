@@ -5,7 +5,6 @@ if(!isset($_SESSION["username"])){
     session_start(); 
 }
 require_once("../private/config.php"); 
-require_once("../php_scripts/admin_functions.php");
 require_once("../php_scripts/functions.php");
 ?>
 <!-- Top bar-->
