@@ -34,7 +34,6 @@ if (!empty($_POST['login'])){
       $query = mysqli_query($conn, $sql);
       // if query checks out (successful login)
       if (mysqli_num_rows($query) > 0) {
-          echo '<script>console.log("[DEBUG]Found you")</script>';
           session_start();
           $_SESSION["username"] = $username;
           $_SESSION["current_user"] = $username;

@@ -50,7 +50,7 @@ require_once("../php_scripts/functions.php");
 </div>
 <!-- Top bar end-->
 <!-- Login Modal-->
-<div id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modalLabel" aria-hidden="true" class="modal fade">
+<div id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modalLabel" aria-hidden="true" class="modal fade" data-backdrop="static" >
    <div role="document" class="modal-dialog">
       <div class="modal-content">
          <div class="modal-header">
@@ -58,7 +58,8 @@ require_once("../php_scripts/functions.php");
             <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
          </div>
          <div class="modal-body">
-              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">               <div class="form-group">
+              <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post">               
+               <div class="form-group">
                   <input id="email-login" type="text" class="form-control" name="username" placeholder="Username">
                   <span class="error"><?php if(!empty($loginusernameErr)){echo $loginusernameErr;}?></span> 
                </div>
@@ -67,11 +68,9 @@ require_once("../php_scripts/functions.php");
                   <input id="password-login" type="password" class="form-control" name="password" placeholder="Password">
                </div>
                <p class="text-center">
-                  <button type="submit" class="btn btn-template-outlined" name='login_modal' value='login_modal'><i class="fa fa-sign-in"></i> Log in</button>
+                  <button type="submit" id="loginmodalbtn" class="btn btn-template-outlined" name='login_modal' value='login_modal' ><i class="fa fa-sign-in"></i> Log in</button>
                </p>
             </form>
-            <p class="text-center text-muted">Not registered yet?</p>
-            <p class="text-center text-muted"><a href="register.php"><strong>Register now</strong></a>! It is easy and done in 1 minute and gives you access to special discounts and much more!</p>
          </div>
       </div>
    </div>

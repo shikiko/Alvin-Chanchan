@@ -30,18 +30,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			      die("Connection failed: " . $conn->connect_error);
 			    }else{
 			$sql = "select * from User where username = '$username' AND password ='$password'";
-		 	// if query checks out
-		  	if ($conn->query($sql) !== FALSE) {
-		    	echo '<script>console.log("[DEBUG]Found you")</script>';
-			    $_SESSION["username"] = $username;
-			    $_SESSION["current_user"] = $username;
-        		header("Refresh:0");
-		  	}else{
-			    $error = "Error: " . $sql . "<br>" . $conn->error;
-			    echo '<script>console.log("[DEBUG]SQL Staement:';
-			    echo $error;
-			    echo '")</script>';  
-		  		}
+		 	// if queries are correct (correct password/username)
+		      if (mysqli_num_rows($query) > 0) {
+		          session_start();
+		          $_SESSION["username"] = $username;
+		          $_SESSION["current_user"] = $username;
+		            header("Refresh:0");
+		      } else { // wrong password
+		        $modalErr = True;
+		      }
 			// Close connection
 		  	$conn->close();
 			}//end of insert
