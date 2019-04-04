@@ -9,6 +9,11 @@ require_once("../private/config.php");
 function count_unseen_message($from_user_id, $to_user_id)
 {
 $connect = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+// Check connection
+if (!$connect) {
+  header("Location: ../error/500.php");
+  die("Connection failed: " . $connection->connect_error);
+}
  $query = "
  SELECT * FROM `system` 
  WHERE `From` = '$from_user_id' 
@@ -51,6 +56,11 @@ SELECT * FROM user
 WHERE Username != '".$Username."' 
 ";
 $connect = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
+// Check connection
+if (!$connect) {
+  header("Location: ../error/500.php");
+  die("Connection failed: " . $connect->connect_error);
+}
 $statement = $connect->prepare($query);
 
 $statement->execute();

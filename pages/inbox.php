@@ -32,8 +32,10 @@ if(!isset($_SESSION['username']))
         <?php include("../headers/header.inc.php");
         require_once("../private/config.php");
         $connection = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-        if (mysqli_connect_errno()) {
-            die(mysqli_connect_errno());
+        	    // Check connection
+        if (!$connection) {
+          header("Location: ../error/500.php");
+          die("Connection failed: " . $connection->connect_error);
         }
         ?>
         <div class="container">
