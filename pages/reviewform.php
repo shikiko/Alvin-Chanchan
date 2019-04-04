@@ -55,6 +55,7 @@
           <div class="row bar">
             <div id="customer-account" class="col-lg-9 clearfix">
               <h1 class="text-upper">Welcome, <?php echo $_SESSION["username"]; ?></h1>
+                <?php  if($error != ''){echo '<div role="alert" class="alert alert-danger">'.$error.'</div>';} ?>
              <div class="box mt-5">
                 <div class="heading">
                   <h3 class="text-uppercase">Write review</h3>

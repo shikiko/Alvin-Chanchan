@@ -47,8 +47,9 @@ require_once("../php_scripts/ins_listing.php");
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <div class="box">
+            <div class="box"> 
                 <h1 class="text-upper">Welcome, <?php echo $_SESSION["username"]; ?></h1>
+              <?php  if($error != ''){echo '<div role="alert" class="alert alert-danger">'.$error.'</div>';} ?>
               <h2 class="text-uppercase">New Listing</h2>
               <p class="lead">Ready to Sell?</p>
               <p>Fill in a few important details and help describe your product so that Users know what they're getting!</p>

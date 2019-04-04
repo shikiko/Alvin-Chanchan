@@ -1,6 +1,6 @@
 <?php
 require_once("../php_scripts/functions.php");
-$itemnameErr = $itempriceErr=$itemdurErr = $tradelocErr = $createErr = $successfulUpload =$imageErr = "";
+$itemnameErr = $itempriceErr=$itemdurErr = $tradelocErr = $createErr = $successfulUpload =$imageErr = $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $seller = trim_input($_SESSION["username"]);
@@ -67,7 +67,7 @@ if (!empty($_POST["upload"])){
         }//else $conn->connect_error
       }//$check = true
   }else{
-    echo "You are not verified, Please verify first";
+    $error = "You are not verified, Please verify first";
   }//if checkVerified
   }
 }

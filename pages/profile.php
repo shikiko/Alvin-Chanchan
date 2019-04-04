@@ -163,7 +163,11 @@
                     <input type="hidden" name="targetuser" value="<?php echo $_GET['username']?>"/>
                     <input type="hidden" name="rating" value=""/>
                     <input type="hidden" name="retrievedtarget" value=""/>
-                    <button type="submit" class="btn btn-template-outlined" name="review" value='review'><i class="fa fa-user-md"></i> Submit review</button>
+                    <?php 
+                    if($_SESSION["username"] != NULL){if($_GET["username"] != $_SESSION["username"]){
+                      echo '<button type="submit" class="btn btn-template-outlined" name="review" value="review"><i class="fa fa-user-md"></i> Submit review</button>';
+                    }}?>
+
                 </form>   
             </div>
             </div>

@@ -1,6 +1,6 @@
 <?php
 require_once("../php_scripts/functions.php");
-$revCommErr = $successfulRev    = "";
+$revCommErr = $successfulRev  = $error  = "";
 $username = $_SESSION["username"];
 
 
@@ -44,7 +44,7 @@ if (!empty($_POST["review"])){
         }//else $conn->connect_error
       }//$check = true
   }else{
-    echo "You are not verified, Please verify first";
+    $error =  "You are not verified, Please verify first";
   }//if checkVerified
   }
 }
