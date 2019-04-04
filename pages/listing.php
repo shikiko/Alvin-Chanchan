@@ -89,7 +89,7 @@
                        <?php if((!empty($_SESSION["username"])) && $Seller === $_SESSION["username"]){?>
                     <div class="col-lg-12">
                     <form class=text-center action="editListing.php" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" name="targetitem" value='.id.' />
+                    <input type="hidden" name="targetitem" value=<?php echo id ?> />
                     <input type="hidden" name="itemcond" value=""/>
                     <input type="hidden" name="itemcat" value=""/>
                     <input type="hidden" name="itemdesc" value=""/>
@@ -99,11 +99,10 @@
                     </div>
                     <button type="submit" class="btn btn-template-outlined" name="upload" value="upload"><i class="fa fa-user-md"></i> Edit Listing</button>
                 </form>   
-                </div>;
+                </div>
               <?php }?>
                   </div>
                 </div>
-                  
               </div>
               <div id="details" class="box mb-4 mt-4">
                 <?php
