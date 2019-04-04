@@ -12,7 +12,6 @@ if(empty($_SESSION["username"])){
 <!DOCTYPE html>
 <html>
 <?php
-    
    require_once("../php_scripts/ins_listing.php"); 
 ?>
 <head>
@@ -29,7 +28,7 @@ if(empty($_SESSION["username"])){
         <div class="row">
           <div class="col-lg-12">
             <div class="box"> 
-                <h1 class="text-upper">Welcome, <?php echo !empty($_SESSION["username"]); ?></h1>
+                <h1 class="text-upper">Welcome, <?php echo $_SESSION["username"]; ?></h1>
               <?php  if($error != ''){echo '<div role="alert" class="alert alert-danger">'.$error.'</div>';} ?>
               <h2 class="text-uppercase">New Listing</h2>
               <p class="lead">Ready to Sell?</p>
