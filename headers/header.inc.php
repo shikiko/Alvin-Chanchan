@@ -8,6 +8,27 @@ require_once("../private/config.php");
 require_once("../php_scripts/functions.php");
 ?>
 <!-- Top bar-->
+<head>
+      <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
+     <!-- Font Awesome CSS-->
+     <link rel="stylesheet" href="../vendor/font-awesome/css/font-awesome.min.css">
+     <!-- Google fonts - Roboto-->
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700">
+     <!-- Bootstrap Select-->
+     <link rel="stylesheet" href="../vendor/bootstrap-select/css/bootstrap-select.min.css">
+     <!-- owl carousel-->
+     <link rel="stylesheet" href="../vendor/owl.carousel/assets/owl.carousel.css">
+     <link rel="stylesheet" href="../vendor/owl.carousel/assets/owl.theme.default.css">
+     <!-- theme stylesheet-->
+     <link rel="stylesheet" href="../css/style.pink.css" id="theme-stylesheet">
+     <!-- Custom stylesheet - for your changes-->
+     <link rel="stylesheet" href="../css/custom.css">
+     <!-- Favicon and apple touch icons-->
+     <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+   </head>
 <title>Fast Trade | <?php echo $currentPage;?></title>
 <div class="top-bar">
    <div class="container">
@@ -95,7 +116,7 @@ require_once("../php_scripts/functions.php");
                   if(CheckAdmin($username)){
                      echo '<li class="nav-item dropdown"><a href="javascript: void(0)" data-toggle="dropdown" class="dropdown-toggle">Admin <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li class="dropdown-item"><a href="../pages/manageprofiles.php" class="nav-link">Edit Profiles</a></li>
+                    <li class="dropdown-item"><a href="../pages/manageprofiles.php" class="nav-link">Admin Panel</a></li>
                   </ul>
                 </li>';
                   }
