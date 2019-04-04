@@ -21,8 +21,8 @@ require_once("../php_scripts/functions.php");
          <div class="col-md-6">
             <div class="d-flex justify-content-md-end justify-content-between">
                <ul class="list-inline contact-info d-block d-md-none">
-                  <li class="list-inline-item"><a href="#"><i class="fa fa-phone"></i></a></li>
-                  <li class="list-inline-item"><a href="#"><i class="fa fa-envelope"></i></a></li>
+                  <li class="list-inline-item"><a href="#"></a></li>
+                  <li class="list-inline-item"><a href="#"></a></li>
                </ul>
                <?php
                echo '<script>console.log("[DEBUG]Session_Status():';
