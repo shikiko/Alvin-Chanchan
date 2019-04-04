@@ -28,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	  		if($password_1 === $password_2){
 		  		if(ValidatePassword($password_old)){
 		  			if(UpdatePassword($password_1)){
-		  				$successfulUpdate = true;
 		  				$successfully = true;
 		  			}
 		  		}else{
@@ -48,6 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			//checks if input is numeric
 			if(is_numeric($_POST["phone"])){
 				$phone = trim_input($_POST["phone"]);
+				$successfulUpdate = true;
 				UploadTelephone($phone);
 			}else{
 				$phone = 'NULL';
@@ -58,6 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	  	}
 	  	if(!empty($_POST["gender"])){
 	  		$gender = trim_input($_POST["gender"]);
+	  		$successfulUpdate = true;
 	  		UploadGender($gender);
 	  	}
 	  	//Checks if upload image is empty.hi
