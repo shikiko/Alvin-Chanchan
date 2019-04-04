@@ -67,7 +67,8 @@
                 </ul>
               </div>
               <?php 
-              if($_GET["username"] == ($_SESSION["username"])){
+              if(isset($_SESSION["username"])){
+                    if($_GET["username"] == ($_SESSION["username"])){
                 echo '<div class="col-lg-3 mt-4 mt-lg-0 col-md-2">
               <div class="panel panel-default sidebar-menu">
                 <div class="panel-heading">
@@ -80,8 +81,9 @@
                 </div>
               </div>
             </div>';
+              }
+
               }?>
- 
             </div>
           </section>
         </div>

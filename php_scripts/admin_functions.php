@@ -100,7 +100,6 @@ function UpdateTelephone($phone, $username){
 
 function UpdateGender($gender, $username){
 	$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-	$username = $_SESSION["username"];
 	//Checks if connections exists
 	if ($conn->connect_error) {
       echo "connection error";
@@ -124,14 +123,13 @@ function UpdateGender($gender, $username){
 
 function VerifyEmail($verified, $username){
 	$conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
-	$username = $_SESSION["username"];
 	//Checks if connections exists
 	if ($conn->connect_error) {
       echo "connection error";
       die("Connection failed: " . $conn->connect_error);
       return false;
     }else{
-		$sql = "Update user set verified ='$verified' where username='$username'";
+		$sql = "Update user set verified =$verified where username='$username'";
 		//checks if record is successful (true = successful)
 		if ($conn->query($sql) === TRUE) {
 		    $conn->close();
