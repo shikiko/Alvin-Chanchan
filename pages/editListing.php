@@ -47,10 +47,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ?>
                 <h1 class="text-upper">Welcome, <?php echo $_SESSION["username"]; ?></h1>
               <h2 class="text-uppercase">Edit Listing</h2>
-              <p class="lead">Ready to Sell?</p>
+              <p class="lead">Change it up.</p>
               <p>Fill in a few important details and help describe your product so that Users know what they're getting!</p>
               <hr>
-              <?php if($successfulUpload == true){echo '<div role="alert" class="alert alert-success">Your listing has been created.</div>';} ?>
+              <?php if($successfulUpload == true){echo '<div role="alert" class="alert alert-success">Your listing has been updated.</div>';} ?>
               <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) ?>" method="post"enctype="multipart/form-data" >
                 <input type='hidden' name='action' value='upload'/>
                 <input type='hidden' name='targetitem' value='<?php echo $targetitem?>'/>

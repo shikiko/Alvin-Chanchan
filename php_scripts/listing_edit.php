@@ -67,9 +67,9 @@ if (!empty($_POST["upload"])){
             
           }
           $conn->close();
-          $URL="../pages/listing.php?id=$targetitem";
-            echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
-            echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
+//          $URL="../pages/listing.php?id=$targetitem";
+//            echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+//            echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
         }//else $conn->connect_error
       }//$check = true
   }else{

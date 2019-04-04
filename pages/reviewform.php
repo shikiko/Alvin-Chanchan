@@ -2,16 +2,22 @@
   $currentPage = 'Submit Review';
   require_once("../private/config.php");
   //if method is post then
-  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  
+  if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST["targetuser"])) {
   $retrievedtarget = $_POST["targetuser"];
+  }else{
+      $retrievedtarget='';
   }
-  else{
-      header("Location: ../error/401.php");
-  }
+  
 ?>
 <html>
     <?php
     include("../headers/header.inc.php");
+    if(empty($_SESSION["username"])){
+    $URL="../error/401.php";
+            echo "<script type='text/javascript'>document.location.href='{$URL}';</script>";
+            echo '<META HTTP-EQUIV="refresh" content="0;URL=' . $URL . '">';
+}
     require_once("../php_scripts/ins_review.php");?>
   <head>
     <meta charset="utf-8">
