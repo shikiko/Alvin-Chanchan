@@ -1,8 +1,8 @@
 <?php 
   $currentPage = 'Profile'; 
   require_once("../private/config.php");
-  require_once("../php_scripts/profile_view.php");
-  include("../headers/header.inc.php");
+  
+  
     $conn = mysqli_connect(DBHOST, DBUSER, DBPASS, DBNAME);
       if (!$conn) {
         header("Location: ../error/500.php");
@@ -11,6 +11,10 @@
 ?>
 <html>
   <head>
+      <?php
+      include("../headers/header.inc.php");
+      require_once("../php_scripts/profile_view.php");
+      ?>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
@@ -63,7 +67,7 @@
                   </li>
                 </ul>
               </div>
-              <?php if($username === $_SESSION["username"]){
+              <?php if($username === !empty($_SESSION["username"])){
                 echo '<div class="col-lg-3 mt-4 mt-lg-0 col-md-2">
               <div class="panel panel-default sidebar-menu">
                 <div class="panel-heading">
@@ -135,7 +139,7 @@
                     <input type="hidden" name="rating" value=""/>
                     <input type="hidden" name="retrievedtarget" value=""/>
                     <?php 
-                    if($_SESSION["username"] != NULL){if($_GET["username"] != $_SESSION["username"]){
+                    if(!empty($_SESSION["username"]) != NULL){if($_GET["username"] != !empty($_SESSION["username"])){
                       echo '<button type="submit" class="btn btn-template-outlined" name="review" value="review"><i class="fa fa-user-md"></i> Submit review</button>';
                     }}?>
 

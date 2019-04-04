@@ -1,11 +1,18 @@
 <?php 
 $currentPage = 'New Listing';
-include("../headers/header.inc.php");
+
 require_once("../private/config.php");
-require_once("../php_scripts/ins_listing.php");
+if(empty($_SESSION['username'])){
+    header("Location: ../error/401.php");
+}
+
 ?>
 <!DOCTYPE html>
 <html>
+<?php
+    include("../headers/header.inc.php");
+   require_once("../php_scripts/ins_listing.php"); 
+?>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,7 +51,7 @@ require_once("../php_scripts/ins_listing.php");
                   <input id="itemprice" type="number" step="0.01" class="form-control" name="itemprice">
                 </div>
                 <div class="form-group">
-                  <label >Duration</label>
+                  <label >Duration(in days)</label>
                   <span class="error">* <?php echo $itemdurErr;?></span>
                   <input id="itemdur" type="number" class="form-control" name="itemdur">
                 </div>
