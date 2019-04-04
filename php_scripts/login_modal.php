@@ -29,8 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			      header("Location: ../error/500.php");
 			      die("Connection failed: " . $conn->connect_error);
 			    }else{
-			$sql = "select * from User where username = '$username' AND password ='$password'";
-		 	// if queries are correct (correct password/username)
+		      $sql = "select * from User where username = '$username' AND password ='$password'";
+		      $query = mysqli_query($conn, $sql);
+		      // if query checks out (successful login)
 		      if (mysqli_num_rows($query) > 0) {
 		          session_start();
 		          $_SESSION["username"] = $username;
